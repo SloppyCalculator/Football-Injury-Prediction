@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitKick Pro - Football Injury Prediction</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* Football Stadium Background */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #003366, #007700);
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Hero Image - Football Player */
+        .hero-image {
+            width: 350px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Title & Description */
+        h1 {
+            font-size: 28px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+    
+        /* Football-Themed Buttons */
+        button {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #FFD700; /* Gold (Trophy/Champion Theme) */
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        button i {
+            margin-right: 10px;
+        }
+
+        /* Hover and Click Effects */
+        button:hover {
+            background-color: #FFA500; /* Orange Highlight */
+            transform: scale(1.08);
+        }
+
+        button:active {
+            background-color: #FF8C00; /* Darker Orange */
+            transform: scale(0.96);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Football Player Image -->
+        <img src="static/homeImage.png" alt="Football Player" class="hero-image">
+        
+        <!-- Welcome Text -->
+        <h1>⚽ Welcome to FitKick Pro ⚽</h1>
+        <p>Your Personalized Football Injury Prediction System</p>
+        
+        <!-- Buttons -->
+        <div class="button-container">
+            <!-- Sign Up Button using Flask route -->
+            <a href="{{ url_for('sign') }}">
+                <button><i class="fa fa-user-plus"></i> SIGN UP</button>
+            </a>
+            <button onclick="logIn()"><i class="fa fa-sign-in"></i> LOG IN</button>
+        </div>
+    </div>
+
+    <script>
+        function signUp() {
+            alert("Sign Up button clicked!");
+        }
+        function logIn() {
+            alert("Log In button clicked!");
+        }
+    </script>
+</body>
+</html>
+
+

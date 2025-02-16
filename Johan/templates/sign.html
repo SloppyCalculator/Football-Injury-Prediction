@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitKick Pro - Sign Up</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* Football Stadium Background */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #003366, #007700);
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Hero Image - Football Player */
+        .hero-image {
+            width: 350px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Title & Description */
+        h1 {
+            font-size: 28px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Form Container */
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        /* Input Fields */
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 12px;
+            background-color: #ffffff;
+            color: #000000;
+            font-size: 16px;
+        }
+
+        /* Sign Up Button */
+        .submit-button {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #FFD700; /* Gold (Trophy/Champion Theme) */
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .submit-button:hover {
+            background-color: #FFA500; /* Orange Highlight */
+            transform: scale(1.08);
+        }
+
+        .submit-button:active {
+            background-color: #FF8C00; /* Darker Orange */
+            transform: scale(0.96);
+        }
+
+        /* Back Button */
+        .back-button {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #FFD700;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .back-button:hover {
+            color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Image - Football Player -->
+        <img src="static/homeImage.png" alt="Football Player" class="hero-image">
+        
+        <!-- Sign Up Form -->
+        <h1>Sign Up to FitKick Pro</h1>
+        <p>Get started with our Football Injury Prediction System</p>
+        
+        <div class="form-container">
+            <form action="#" method="POST">
+                <!-- Name Field -->
+                <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                
+                <!-- Password Field -->
+                <input type="password" id="password" name="password" placeholder="Password" required>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-button">SIGN UP</button>
+            </form>
+
+            <!-- Back Button -->
+            <button class="back-button" onclick="window.location.href='index.html'"><i class="fa fa-arrow-left"></i> Back to Home</button>
+        </div>
+    </div>
+</body>
+</html>
