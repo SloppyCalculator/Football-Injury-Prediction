@@ -1,0 +1,244 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Data Entry - FitKick Pro</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #003366, #007700);
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            width: 48%;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #FFD700;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Player Performance Data</h1>
+        <form id="dataForm" action='/predict' method="POST">
+            
+            <!-- Micro-cycle Dropdown -->
+            <div class="form-group">
+                <label for="microCycle">Micro-cycle</label>
+                <select id="microCycle" name="Micro-cycle">
+                    <!-- Micro-cycle from 3 to 21 -->
+                    <script>
+                        for (let i = 3; i <= 21; i++) {
+                            document.write(<option value="${i}">${i}</option>);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <!-- Position Dropdown -->
+            <div class="form-group">
+                <label for="position">Position</label>
+                <select id="position" name="Position">
+                    <option value="OMF">Offensive Midfielder</option>
+                    <option value="ST">Striker</option>
+                    <option value="CB">Centre Back</option>
+                    <option value="AM">Attacking Midfielder/ Winger</option>
+                    <option value="DMF">Defensive Midfielder</option>
+                    <option value="FB">FullBack</option>
+                </select>
+            </div>
+
+            <!-- Match Day Dropdown -->
+            <div class="form-group">
+                <label for="matchDay">Match Day</label>
+                <select id="matchDay" name="MatchDay">
+                    <option value="MD-4">MD-4</option>
+                    <option value="MD-3">MD-3</option>
+                    <option value="MD-2">MD-2</option>
+                    <option value="MD-1">MD-1</option>
+                    <option value="MD">MD</option>
+                    <option value="MD+1">MD+1</option>
+                    <option value="MD+2">MD+2</option>
+                    <option value="OFF">OFF</option>
+                </select>
+            </div>
+
+            <!-- Numeric Input Fields with Validation -->
+            <div class="form-group">
+                <label for="sleep">Sleep (hours)</label>
+                <input type="number" id="sleep" name="Sleep" min="0" max="12" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="stress">Stress Level (0-10)</label>
+                <input type="number" id="stress" name="Stress" min="0" max="10">
+            </div>
+            <div class="form-group">
+                <label for="fatigue">Fatigue Level (0-10)</label>
+                <input type="number" id="fatigue" name="Fatigue" min="0" max="10">
+            </div>
+            <div class="form-group">
+                <label for="pain">Pain Level (0-10)</label>
+                <input type="number" id="pain" name="Pain" min="0" max="10">
+            </div>
+            <div class="form-group">
+                <label for="wellness">Wellness Score (0-10)</label>
+                <input type="number" id="wellness" name="Wellness" min="0" max="10">
+            </div>
+            <div class="form-group">
+                <label for="rpe">RPE</label>
+                <input type="number" id="rpe" name="RPE" min="0" max="20">
+            </div>
+            <div class="form-group">
+                <label for="duration">Duration (min)</label>
+                <input type="number" id="duration" name="Duration" min="0">
+            </div>
+            <div class="form-group">
+                <label for="acute">Acute Workload</label>
+                <input type="number" id="acute" name="Acute" min="0">
+            </div>
+            <div class="form-group">
+                <label for="chronic">Chronic Workload</label>
+                <input type="number" id="chronic" name="Chronic" min="0">
+            </div>
+            <div class="form-group">
+                <label for="acwr">ACWR</label>
+                <input type="number" id="acwr" name="ACWR" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="totalDuration">Total Duration</label>
+                <input type="number" id="totalDuration" name="Total Duration" min="0">
+            </div>
+            <div class="form-group">
+                <label for="tdPerMin">TD/Min (Total Duration per Minute)</label>
+                <input type="number" id="tdPerMin" name="TD/min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distMP2035W">Dist MP 20-35W</label>
+                <input type="number" id="distMP2035W" name="Dist MP 20-35W" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distMP3555W">Dist MP 35-55W</label>
+                <input type="number" id="distMP3555W" name="Dist MP 35-55W" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distMPGreaterThan55W">Dist MP >55W</label>
+                <input type="number" id="distMPGreaterThan55W" name="Dist MP>55 W" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="dist14_4_19_8kmh">Distance 14.4-19.8 km/h / min</label>
+                <input type="number" id="dist14_4_19_8kmh" name="Distance 14,4-19,8 km/h / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="dist19_8_25kmh">Distance 19.8-25 km/h / min</label>
+                <input type="number" id="dist19_8_25kmh" name="Distance 19,8-25 km/h / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distGreaterThan25kmh">Distance >25 km/h / min</label>
+                <input type="number" id="distGreaterThan25kmh" name="Distance > 25 km/h / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distAccGreaterThan3">Dist Acc>3 / min</label>
+                <input type="number" id="distAccGreaterThan3" name="Dist Acc>3 / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distDecLessThan3">Dist Dec<-3 / min</label>
+                <input type="number" id="distDecLessThan3" name="Dist Dec <-3 / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distAcc23">Dist Acc 2-3 / min</label>
+                <input type="number" id="distAcc23" name="Dist Acc 2-3 / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distDec23">Dist Dec 2-3 / min</label>
+                <input type="number" id="distDec23" name="Dist Dec 2-3 / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distMP20_35">Dist MP 20-35W / min</label>
+                <input type="number" id="distMP20_35" name="Dist MP 20-35W / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distMP35_55">Dist MP 35-55W / min</label>
+                <input type="number" id="distMP35_55" name="Dist MP 35-55W / min" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="distMPOver55">Dist MP >55 W / min</label>
+                <input type="number" id="distMPOver55" name="Dist MP>55 W / min" min="0" step="0.1">
+            </div>
+
+
+            <button type="submit">Submit Data</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
+    <script>
+        // Populate Micro-cycle dropdown
+        let microCycleDropdown = document.getElementById("microCycle");
+        for (let i = 3; i <= 21; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            microCycleDropdown.appendChild(option);
+        }
+    </script>
+
+</body>
+</html>

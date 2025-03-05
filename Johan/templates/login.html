@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitKick Pro - Sign Up</title>
+    <title>FitKick Pro - Login</title>
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,7 +71,7 @@
             font-size: 16px;
         }
 
-        /* Sign Up Button */
+        /* Login Button */
         .submit-button {
             font-size: 18px;
             font-weight: bold;
@@ -106,9 +106,6 @@
             border: none;
             cursor: pointer;
             transition: color 0.3s;
-            text-decoration: none; /* Remove underline */
-            display: inline-block; /* Make it behave like a button */
-            padding: 10px 20px; /* Add padding for better clickability */
         }
 
         .back-button:hover {
@@ -121,25 +118,25 @@
         <!-- Hero Image - Football Player -->
         <img src="{{ url_for('static', filename='homeImage.png') }}" alt="Football Player" class="hero-image">
        
-        <!-- Sign Up Form -->
-        <h1>Sign Up to FitKick Pro</h1>
-        <p>Get started with our Football Injury Prediction System</p>
+        <!-- Login Form -->
+        <h1>Login to FitKick Pro</h1>
+        <p>Access your Football Injury Prediction System</p>
         
         <div class="form-container">
-            <form action="{{ url_for('signup') }}" method="POST">
-                <!-- Name Field -->
-                <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+            <form action="#" method="POST">
+                <!-- Username Field -->
+                <input type="text" id="username" name="username" placeholder="Username" required>
                 
                 <!-- Password Field -->
                 <input type="password" id="password" name="password" placeholder="Password" required>
 
                 <!-- Submit Button -->
-                <button type="submit" class="submit-button">SIGN UP</button>
+                <button type="submit" class="submit-button">LOGIN</button>
             </form>
 
             <!-- Back Button -->
-            <a href="{{ url_for('home') }}" class="back-button">
-                <i class="fa fa-arrow-left"></i> Back to Home
+            <a href="{{ url_for('home') }}">
+                <button class="back-button"><i class="fa fa-arrow-left"></i> Back to Home</button>
             </a>
         </div>
     </div>

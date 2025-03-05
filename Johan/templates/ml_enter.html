@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Data Entry - FitKick Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #003366, #007700);
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .form-group {
+            width: 48%;
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #FFD700;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Player Performance Data</h1>
+        <form id="dataForm" action="/predict" method="POST">
+            <div class="form-group">
+                <label for="pressures">Pressures</label>
+                <input type="number" id="pressures" name="Pressures" min="0">
+            </div>
+            <div class="form-group">
+                <label for="touches">Touches</label>
+                <input type="number" id="touches" name="Touches" min="0">
+            </div>
+            <div class="form-group">
+                <label for="progressive_carries">Progressive Carries</label>
+                <input type="number" id="progressive_carries" name="Progressive Carries" min="0">
+            </div>
+            <div class="form-group">
+                <label for="progressive_passes">Progressive Passes</label>
+                <input type="number" id="progressive_passes" name="Progressive Passes" min="0">
+            </div>
+            <div class="form-group">
+                <label for="pressure_regains">Pressure Regains</label>
+                <input type="number" id="pressure_regains" name="Pressure Regains" min="0">
+            </div>
+            <div class="form-group">
+                <label for="dribbles">Dribbles</label>
+                <input type="number" id="dribbles" name="Dribbles" min="0">
+            </div>
+            <div class="form-group">
+                <label for="dribble_tackles">Dribble Tackles</label>
+                <input type="number" id="dribble_tackles" name="Dribble Tackles" min="0">
+            </div>
+            <div class="form-group">
+                <label for="carries">Carries</label>
+                <input type="number" id="carries" name="Carries" min="0">
+            </div>
+            <div class="form-group">
+                <label for="carries_into_final_third">Carries Into Final Third</label>
+                <input type="number" id="carries_into_final_third" name="Carries Into Final Third" min="0">
+            </div>
+            <div class="form-group">
+                <label for="ball_recoveries">Ball Recoveries</label>
+                <input type="number" id="ball_recoveries" name="Ball Recoveries" min="0">
+            </div>
+            <div class="form-group">
+                <label for="carry_distance">Carry Distance</label>
+                <input type="number" id="carry_distance" name="Carry Distance" min="0">
+            </div>
+            <div class="form-group">
+                <label for="aerials_won">Aerials Won</label>
+                <input type="number" id="aerials_won" name="Aerials Won" min="0">
+            </div>
+            <div class="form-group">
+                <label for="aerials_won_pct">Aerials Won %</label>
+                <input type="number" id="aerials_won_pct" name="Aerials Won %" min="0" step="0.1">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
