@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Performance Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 600px;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Enter Player Data for Prediction</h2>
+    
+    <label for="ID">ID:</label>
+    <input type="text" id="ID" placeholder="Enter Player ID"><br>
+
+    <label for="full_name">Full Name:</label>
+    <input type="text" id="full_name" placeholder="Enter Full Name"><br>
+
+    <label for="potential">Potential:</label>
+    <input type="number" id="potential" placeholder="Enter Player Potential" min="0" max="100" required><br>
+
+    <label for="pac">PAC (Pace):</label>
+    <input type="number" id="pac" placeholder="Enter Pace" min="0" max="100" required><br>
+
+    <label for="sho">SHO (Shooting):</label>
+    <input type="number" id="sho" placeholder="Enter Shooting" min="0" max="100" required><br>
+
+    <label for="pas">PAS (Passing):</label>
+    <input type="number" id="pas" placeholder="Enter Passing" min="0" max="100" required><br>
+
+    <label for="dri">DRI (Dribbling):</label>
+    <input type="number" id="dri" placeholder="Enter Dribbling" min="0" max="100" required><br>
+
+    <label for="phy">PHY (Physical):</label>
+    <input type="number" id="phy" placeholder="Enter Physical" min="0" max="100" required><br>
+
+    <label for="international_reputation">International Reputation:</label>
+    <input type="number" id="international_reputation" placeholder="Enter International Reputation" min="1" max="5" required><br>
+
+    <label for="skill_moves">Skill Moves:</label>
+    <input type="number" id="skill_moves" placeholder="Enter Skill Moves" min="1" max="5" required><br>
+
+    <label for="weak_foot">Weak Foot:</label>
+    <input type="number" id="weak_foot" placeholder="Enter Weak Foot" min="1" max="5" required><br>
+
+    <button onclick="predict()">Predict</button>
+    <h3>Prediction: <span id="result"></span></h3>
+
+    <script>
+        function predict() {
+            // Collect numerical features for the prediction model
+            let features = [
+                parseFloat(document.getElementById("potential").value),
+                parseFloat(document.getElementById("pac").value),
+                parseFloat(document.getElementById("sho").value),
+                parseFloat(document.getElementById("pas").value),
+                parseFloat(document.getElementById("dri").value),
+                parseFloat(document.getElementById("phy").value),
+                parseFloat(document.getElementById("international_reputation").value),
+                parseFloat(document.getElementById("skill_moves").value),
+                parseFloat(document.getElementById("weak_foot").value)
+            ];
+
+            console.log("Sending features:", features); // Debugging log
+
+            fetch("/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ features: features })
+            })
+            .then(response => {
+                console.log("Response received:", response);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Prediction result:", data);
+                if (data.error) {
+                    document.getElementById("result").innerText = "Error: " + data.error;
+                } else {
+                    document.getElementById("result").innerText = "Prediction: " + data.prediction[0];
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("result").innerText = "Error in prediction.";
+            });
+        }
+    </script>
+
+</body>
+</html>
