@@ -89,3 +89,25 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: About_football
+  examples: |
+    - What is foot ball?
+    - Tell me about foot ball?
+    - Can i know about football?
+
+- intent: Common_injuries
+  examples:
+    -What are the most common injuries in football?
+    
+    -What injuries are most frequently sustained by football players?
+    
+    -Can you list typical injuries associated with playing football?
+    
+    -What are the prevalent injuries in football?
+    
+    -Which injuries commonly occur in football athletes?
+    
+    -What types of injuries do football players often experience?
+    
+

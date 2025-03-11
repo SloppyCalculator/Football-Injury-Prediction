@@ -28,3 +28,13 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: Football
+  steps:
+     - intent: About_football
+     - action: utter_About_football
+     - intent: Common_injuries
+     - action: utter_Common_injuries
+
+
+

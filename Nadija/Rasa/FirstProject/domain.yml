@@ -8,6 +8,8 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - About_football
+  - Common_injuries
 
 responses:
   utter_greet:
@@ -28,6 +30,17 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+  utter_About_football:
+    - text: "Football is a popular sport with different versions worldwide. The two main types are **association football (soccer)**, played with a round ball where teams score by kicking into a goal, and **American football**, played with an oval ball where teams score by carrying or passing it into an end zone. Other versions include Canadian football, Australian rules football, and rugby. The game varies by region but generally involves teamwork, strategy, and scoring points to win."
+
+  utter_Common_injuries:
+    - text: "Football players frequently experience injuries such as sprained ankles, hamstring strains, knee injuries (including ACL tears), concussions, and groin pulls. These injuries result from the high-intensity and physical nature of the sport."
+
+
+
+
+
 
 session_config:
   session_expiration_time: 60
