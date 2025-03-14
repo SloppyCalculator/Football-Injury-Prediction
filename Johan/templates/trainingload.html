@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Load Prediction - FitKick Pro</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #003366, #007700);
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .result-section {
+            margin-top: 20px;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .result-section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+
+        .result-section .load-category, .result-section .load-recommendation {
+            font-size: 20px;
+            margin: 15px 0;
+            color: #FFD700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-section .load-category i, .result-section .load-recommendation i {
+            margin-right: 10px;
+        }
+
+        button {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #FFD700;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Training Load Prediction</h1>
+
+        <form id="dataForm" action='/predict_training_load' method="POST">
+            <!-- Similar input fields as before -->
+            <div class="form-group">
+                <label for="microCycle">Micro-cycle</label>
+                <select id="microCycle" name="Micro-cycle">
+                    <script>
+                        for (let i = 3; i <= 21; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="position">Position</label>
+                <select id="position" name="Position">
+                    <option value="OMF">Offensive Midfielder</option>
+                    <option value="ST">Striker</option>
+                    <option value="CB">Centre Back</option>
+                    <option value="AM">Attacking Midfielder/ Winger</option>
+                    <option value="DMF">Defensive Midfielder</option>
+                    <option value="FB">FullBack</option>
+                </select>
+            </div>
+
+            <!-- Additional fields as in previous form -->
+            <div class="form-group">
+                <label for="sleep">Sleep (hours)</label>
+                <input type="number" id="sleep" name="Sleep" min="0" max="12" step="0.1">
+            </div>
+            <!-- Add other similar input fields for stress, fatigue, etc... -->
+
+            <button type="submit">Submit Data</button>
+            <button type="reset">Reset</button>
+        </form>
+
+        <!-- Result Section (Training Load Prediction) -->
+        <div class="result-section" id="resultSection" style="display:none;">
+            <h2>Predicted Training Load</h2>
+            <div class="load-category" id="loadCategory"></div>
+            <div class="load-recommendation" id="loadRecommendation"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("dataForm").onsubmit = function(event) {
+            event.preventDefault();
+            // Assuming server-side logic returns a prediction value
+            let predictedLoad = Math.random().toFixed(2);  // This would be replaced with actual logic
+
+            let loadCategory = "";
+            let recommendation = "";
+
+            // Logic to classify training load based on prediction
+            if (predictedLoad >= 0.81) {
+                loadCategory = "<i class='fa fa-exclamation-triangle'></i> Very High Load";
+                recommendation = "<i class='fa fa-bed'></i> Rest recommended to prevent overuse injuries.";
+            } else if (predictedLoad >= 0.61) {
+                loadCategory = "<i class='fa fa-exclamation-circle'></i> High Load";
+                recommendation = "<i class='fa fa-heartbeat'></i> Monitor fatigue, consider light recovery.";
+            } else if (predictedLoad >= 0.41) {
+                loadCategory = "<i class='fa fa-bar-chart'></i> Moderate Load";
+                recommendation = "<i class='fa fa-refresh'></i> Maintain workload with balanced recovery.";
+            } else {
+                loadCategory = "<i class='fa fa-check-circle'></i> Low Load";
+                recommendation = "<i class='fa fa-arrow-up'></i> Increase workload gradually.";
+            }
+
+            document.getElementById("loadCategory").innerHTML = loadCategory;
+            document.getElementById("loadRecommendation").innerHTML = recommendation;
+            document.getElementById("resultSection").style.display = "block";
+        };
+    </script>
+
+</body>
+</html>

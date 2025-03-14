@@ -9,25 +9,80 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        /* Football Stadium Background */
+        /* General Body Styling */
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(to bottom, #003366, #007700);
             color: #ffffff;
-            text-align: center;
             margin: 0;
             padding: 0;
+            overflow: auto; /* Scroll only when necessary */
         }
 
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;  /* Keeps everything inside */
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo i {
+            margin-right: 10px;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 15px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+            white-space: nowrap; /* Prevents wrapping */
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Main Content */
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        /* Hero Image - Football Player */
+        .content {
+            margin-top: 80px; /* Prevents content from hiding under the fixed header */
+            padding-bottom: 60px; /* Space for footer */
+        }
+
+        /* Hero Image */
         .hero-image {
             width: 350px;
             height: auto;
@@ -54,12 +109,12 @@
             display: flex;
             gap: 20px;
         }
-    
+
         /* Football-Themed Buttons */
         button {
             font-size: 18px;
             font-weight: bold;
-            background-color: #FFD700; /* Gold (Trophy/Champion Theme) */
+            background-color: #FFD700;
             color: #000000;
             border: none;
             border-radius: 12px;
@@ -77,50 +132,91 @@
             margin-right: 10px;
         }
 
-        /* Hover and Click Effects */
+        /* Button Hover and Click Effects */
         button:hover {
-            background-color: #FFA500; /* Orange Highlight */
+            background-color: #FFA500;
             transform: scale(1.08);
         }
 
         button:active {
-            background-color: #FF8C00; /* Darker Orange */
+            background-color: #FF8C00;
             transform: scale(0.96);
         }
 
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .footer .social-icons a {
+            color: #FFD700;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #FFA500;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Football Player Image -->
-        <img src="{{ url_for('static', filename='homeImage.png') }}" alt="Football Player" class="hero-image">
-        
-        <!-- Welcome Text -->
-        <h1>⚽ Welcome to FitKick Pro ⚽</h1>
-        <p>Your Personalized Football Injury Prediction System</p>
-        
-        <!-- Buttons -->
-        <div class="button-container">
-            <!-- Sign Up Button using Flask route -->
-            <a href="{{ url_for('sign') }}">
-                <button><i class="fa fa-user-plus"></i> SIGN UP</button>
-            </a>
-            <a href="{{ url_for('login') }}">
-                <button><i class="fa fa-sign-in"></i> LOG IN</button>
-            </a>
-            
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo">
+            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
         </div>
     </div>
 
-    <script>
-        function signUp() {
-            alert("Sign Up button clicked!");
-        }
-        function logIn() {
-            alert("Log In button clicked!");
-        }
-    </script>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content">
+            <!-- Football Player Image -->
+            <img src="{{ url_for('static', filename='homeImage.png') }}" alt="Football Player" class="hero-image">
+            
+            <!-- Welcome Text -->
+            <h1>⚽ Welcome to FitKick Pro ⚽</h1>
+            <p>Your Personalized Football Injury Prediction System</p>
+            
+            <!-- Buttons -->
+            <div class="button-container">
+                <a href="{{ url_for('sign') }}">
+                    <button><i class="fa fa-user-plus"></i> SIGN UP</button>
+                </a>
+                <a href="{{ url_for('login') }}">
+                    <button><i class="fa fa-sign-in"></i> LOG IN</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+
 </body>
 </html>
-
 

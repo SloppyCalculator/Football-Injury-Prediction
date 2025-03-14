@@ -9,54 +9,92 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        /* Football Stadium Background */
+        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(to bottom, #003366, #007700);
             color: #ffffff;
-            text-align: center;
             margin: 0;
             padding: 0;
+            overflow: auto;
         }
 
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo i {
+            margin-right: 10px;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Container */
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            margin-top: 80px;
         }
 
-        /* Hero Image - Football Player */
+        /* Hero Image */
         .hero-image {
-            width: 350px;
+            width: 250px;
             height: auto;
             border-radius: 15px;
             box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* Title & Description */
-        h1 {
-            font-size: 28px;
-            margin-top: 20px;
-            text-transform: uppercase;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
         /* Form Container */
         .form-container {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
-            width: 80%;
+            width: 90%;
             max-width: 400px;
+            text-align: center;
         }
 
         /* Input Fields */
@@ -75,25 +113,23 @@
         .submit-button {
             font-size: 18px;
             font-weight: bold;
-            background-color: #FFD700; /* Gold (Trophy/Champion Theme) */
+            background-color: #FFD700;
             color: #000000;
             border: none;
             border-radius: 12px;
             padding: 15px 40px;
-            text-align: center;
-            text-decoration: none;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .submit-button:hover {
-            background-color: #FFA500; /* Orange Highlight */
+            background-color: #FFA500;
             transform: scale(1.08);
         }
 
         .submit-button:active {
-            background-color: #FF8C00; /* Darker Orange */
+            background-color: #FF8C00;
             transform: scale(0.96);
         }
 
@@ -106,16 +142,62 @@
             border: none;
             cursor: pointer;
             transition: color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
         }
 
         .back-button:hover {
             color: #FFA500;
         }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .footer .social-icons a {
+            color: #FFD700;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #FFA500;
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo">
+            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
-        <!-- Hero Image - Football Player -->
+        <!-- Hero Image -->
         <img src="{{ url_for('static', filename='homeImage.png') }}" alt="Football Player" class="hero-image">
        
         <!-- Login Form -->
@@ -123,7 +205,7 @@
         <p>Access your Football Injury Prediction System</p>
         
         <div class="form-container">
-            <form action="#" method="POST">
+            <form action="{{ url_for('login') }}" method="POST">
                 <!-- Username Field -->
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 
@@ -135,10 +217,21 @@
             </form>
 
             <!-- Back Button -->
-            <a href="{{ url_for('home') }}">
-                <button class="back-button"><i class="fa fa-arrow-left"></i> Back to Home</button>
+            <a href="{{ url_for('home') }}" class="back-button">
+                <i class="fa fa-arrow-left"></i> Back to Home
             </a>
         </div>
     </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+
 </body>
 </html>

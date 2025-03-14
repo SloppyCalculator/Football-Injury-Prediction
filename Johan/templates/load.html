@@ -20,7 +20,6 @@
         }
 
         /* Header */
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -80,7 +79,7 @@
         .button-box {
             background: rgba(0, 0, 0, 0.85);
             border-radius: 20px;
-            padding: 25px;
+            padding: 50px 25px; /* Increased padding to elongate the button */
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
@@ -88,6 +87,8 @@
             flex-direction: column;
             align-items: center;
             text-decoration: none;
+            height: 300px; /* Increased height */
+            justify-content: space-evenly; /* Ensure vertical alignment of icon and text */
         }
 
         .button-box:hover {
@@ -152,21 +153,16 @@
 
     <!-- Main Content -->
     <div class="container">
-        <a href="/workload" class="button-box">
+        <!-- Evaluate Training Load Button -->
+        <a href="{{ url_for('tl_form') }}" class="button-box">
+            <i class="fa fa-tachometer"></i>
+            <div>Evaluate Training Load</div>
+        </a>
+
+        <!-- Evaluate Match Load Button -->
+        <a href="{{ url_for('ml_form') }}" class="button-box">
             <i class="fa fa-line-chart"></i>
-            <div>Assess Your Workload</div>
-        </a>
-        <a href="/match-readiness" class="button-box">
-            <i class="fa fa-heartbeat"></i>
-            <div>Analyze Match Readiness</div>
-        </a>
-        <a href="/performance" class="button-box">
-            <i class="fa fa-bar-chart"></i>
-            <div>Analyze Performance</div>
-        </a>
-        <a href="/chatbot" class="button-box">
-            <i class="fa fa-comments"></i>
-            <div>Converse with the Chatbot</div>
+            <div>Evaluate Match Load</div>
         </a>
     </div>
 
@@ -181,4 +177,3 @@
     </div>
 </body>
 </html>
-
