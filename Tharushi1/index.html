@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Prediction</title>
+</head>
+
+<body>
+    <h1>Football Player Performance Prediction</h1>
+    <form action="/predict" method="POST">
+        <label for="height_cm">Height (cm):</label>
+        <input type="number" name="height_cm" required><br><br>
+
+        <label for="weight_kg">Weight (kg):</label>
+        <input type="number" name="weight_kg" required><br><br>
+
+        <label for="potential">Potential:</label>
+        <input type="number" name="potential" required><br><br>
+
+        <label for="dribbling">Dribbling:</label>
+        <input type="number" name="dribbling" required><br><br>
+
+        <label for="pas">Passing:</label>
+        <input type="number" name="pas" required><br><br>
+
+        <label for="sho">Shooting:</label>
+        <input type="number" name="sho" required><br><br>
+
+        <label for="acceleration">Acceleration:</label>
+        <input type="number" name="acceleration" required><br><br>
+
+        <label for="stamina">Stamina:</label>
+        <input type="number" name="stamina" required><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+    <h2>Predicted Category: {{ prediction }}</h2>
+    {% endif %}
+</body>
+
+</html>
