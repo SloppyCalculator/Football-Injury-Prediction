@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitKick Pro - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #002244, #004d00);
+            color: white;
+            text-align: center;
+            padding-bottom: 80px; /* Space for footer */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Main Container */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 120px 40px 20px;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1; /* This makes sure the container takes up available space */
+        }
+
+        .button-box {
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 20px;
+            padding: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .button-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+        }
+
+        .button-box i {
+            font-size: 50px;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .button-box div {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .footer .social-icons a {
+            color: #FFD700;
+            font-size: 22px;
+            margin: 0 12px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo">
+            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <a href="/load" class="button-box">
+            <i class="fa fa-line-chart"></i>
+            <div>Assess Your Workload</div>
+        </a>
+        <a href="/injury" class="button-box">
+            <i class="fa fa-heartbeat"></i>
+            <div>Analyze Match Readiness</div>
+        </a>
+        <a href="/performance" class="button-box">
+            <i class="fa fa-bar-chart"></i>
+            <div>Analyze Performance</div>
+        </a>
+        <a href="/chatbot" class="button-box">
+            <i class="fa fa-comments"></i>
+            <div>Converse with the Chatbot</div>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+</body>
+</html>
+

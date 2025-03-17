@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Data Entry - FitKick Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #003366, #007700);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 80px auto 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            width: 48%;
+            margin-bottom: 15px;
+            margin-right: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .submit-button {
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(45deg, #FFA500, #FFD700);
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .submit-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+        }
+
+
+        /* Back Button */
+        .back-button {
+            font-size: 18px;
+            color: #FFD700;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            color: #FFA500;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #ddd;
+            margin: 5px 0;
+        }
+
+        .social-icons a {
+            color: #FFD700;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #FFA500;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .form-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo">
+            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Enter Player Performance Data</h1>
+        
+        <form id="dataForm" action="/predict_ml" method="POST">
+            <div class="form-group">
+                <label for="pressures">Pressures</label>
+                <input type="number" id="pressures" name="pressures" min="0">
+            </div>
+            <div class="form-group">
+                <label for="touches">Touches</label>
+                <input type="number" id="touches" name="touches" min="0">
+            </div>
+            <div class="form-group">
+                <label for="progressive_carries">Progressive Carries</label>
+                <input type="number" id="progressive_carries" name="progressive_carries" min="0">
+            </div>
+            <div class="form-group">
+                <label for="progressive_passes">Progressive Passes</label>
+                <input type="number" id="progressive_passes" name="progressive_passes" min="0">
+            </div>
+            <div class="form-group">
+                <label for="pressure_regains">Pressure Regains</label>
+                <input type="number" id="pressure_regains" name="pressure_regains" min="0">
+            </div>
+            <div class="form-group">
+                <label for="dribbles">Dribbles</label>
+                <input type="number" id="dribbles" name="dribbles" min="0">
+            </div>
+            <div class="form-group">
+                <label for="dribble_tackles">Dribble Tackles</label>
+                <input type="number" id="dribble_tackles" name="dribble_tackles" min="0">
+            </div>
+            <div class="form-group">
+                <label for="carries">Carries</label>
+                <input type="number" id="carries" name="carries" min="0">
+            </div>
+            <div class="form-group">
+                <label for="carries_into_final_third">Carries Into Final Third</label>
+                <input type="number" id="carries_into_final_third" name="carries_into_final_third" min="0">
+            </div>
+            <div class="form-group">
+                <label for="ball_recoveries">Ball Recoveries</label>
+                <input type="number" id="ball_recoveries" name="ball_recoveries" min="0">
+            </div>
+            <div class="form-group">
+                <label for="carry_distance">Carry Distance</label>
+                <input type="number" id="carry_distance" name="carry_distance" min="0">
+            </div>
+            <div class="form-group">
+                <label for="aerials_won">Aerials Won</label>
+                <input type="number" id="aerials_won" name="aerials_won" min="0">
+            </div>
+            <div class="form-group">
+                <label for="aerials_won_pct">Aerials Won %</label>
+                <input type="number" id="aerials_won_pct" name="aerials_won_pct" min="0" step="0.1">
+            </div>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+
+        <!-- Back Button -->
+        <a href="{{ url_for('home') }}" class="back-button">
+            <i class="fa fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+
+</body>
+</html>
