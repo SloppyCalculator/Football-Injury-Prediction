@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Injury Prediction Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary: #00ff95;
+            --primary-dark: #00cc78;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --error: #ff4545;
+            --success: #00ff95;
+            --warning: #ffbe0b;
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        /* General Page Styling */
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            /* background: var(--bg-dark); */
+            min-height: 100vh;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            padding: 2rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-image: url('bg2.jpg');
+            background-size: cover; /* Adjusts the image to cover the whole area */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image */
+        }
+
+        /* Centered Form Container */
+        .container {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 24px;
+            width: 100%;
+            background:transparent; 
+            max-width: 520px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--input-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Heading Styling */
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, var(--primary), #80ffbb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideDown 0.5s ease-out;
+        }
+
+       
+
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin-bottom: 1.75rem;
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+        .form-group:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+
+        /* Labels */
+        label {
+            margin-top: 15px;;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .form-group:focus-within label {
+            color: var(--primary);
+        }
+
+        /* Input Fields */
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--input-bg);
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* Fix for dropdown text color */
+        select option {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300ff95' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2rem;
+            padding-right: 3rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(0, 255, 149, 0.1);
+        }
+
+        input:hover, select:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Submit Button */
+        button {
+            width: 100%;
+            padding: 1.125rem;
+            background: var(--primary);
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 255, 149, 0.2);
+        }
+
+        button:hover::after {
+            transform: translateX(100%);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Error Messages */
+        .error {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Prediction Result */
+        #predictionResult {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--input-border);
+            animation: fadeIn 0.5s ease-out;
+            display: none;
+        }
+
+        /* Progress Bar Container */
+        #progressContainer {
+            margin-top: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Health Progress Bar */
+        .progress-bg {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            height: 12px;
+            overflow: hidden;
+            margin-top: 0.75rem;
+            position: relative;
+        }
+
+        #formSubHeading {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: -1.25rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: -0.3px;
+            background: linear-gradient(to right, var(--text-secondary), #eff8f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideDown 0.5s ease-out;
+        }
+
+
+        #healthProgressBar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 8px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        background-color 0.3s ease;
+            width: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #healthProgressBar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Health Status Text */
+        #healthStatus {
+            margin-top: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            input, select, button {
+                font-size: 1rem;
+                padding: 0.875rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 id="formHeading">... Injury Scope ...</h2>
+        <h3 id="formSubHeading">Step ahead of injuries</h3>
+
+
+        <form id="injuryForm">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="10" max="100" required>
+            <div class="error" id="ageError">Age must be between 10 and 100.</div>
+
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" name="height" min="50" max="250" required>
+            <div class="error" id="heightError">Height must be between 50 cm and 250 cm.</div>
+
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" name="weight" min="20" max="200" required>
+            <div class="error" id="weightError">Weight must be between 20 kg and 200 kg.</div>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <div class="error" id="genderError">Please select a gender.</div>
+
+            <label for="dominantLeg">Dominant Leg</label>
+            <select id="dominantLeg" name="dominantLeg" required>
+                <option value="">Select</option>
+                <option value="Left">Left</option>
+                <option value="Right">Right</option>
+            </select>
+            <div class="error" id="legError">Please select a dominant leg.</div>
+
+            <label for="walkingSpeed">Walking Speed (m/s)</label>
+            <input type="number" id="walkingSpeed" name="walkingSpeed" step="0.01" min="0.1" max="10" required>
+            <div class="error" id="speedError">Walking speed must be between 0.1 and 10 m/s.</div>
+
+            <label for="yearsRunning">Years Running</label>
+            <input type="number" id="yearsRunning" name="yearsRunning" min="0" max="80" required>
+            <div class="error" id="runningError">Years running must be at least 0.</div>
+
+            <label for="trainingLevel">Training Level</label>
+            <select id="trainingLevel" name="trainingLevel" required>
+                <option value="">Select Level</option>
+                <option value="Recreational">Recreational</option>
+                <option value="Professional">Professional</option>
+            </select>
+            <div class="error" id="levelError">Please select a training level.</div>
+
+            <button type="submit">Predict Injury Risk</button>
+        </form>
+
+        <h3 id="predictionResult"></h3>
+
+        <div id="progressContainer" style="display: none; text-align: left; margin-top: 15px;">
+            <label for="healthProgress">Player Health (%)</label>
+            <div style="position: relative; height: 25px; background: #ccc; border-radius: 5px;">
+                <div id="healthProgressBar" style="
+                    width: 0%;
+                    height: 100%;
+                    background-color: green;
+                    border-radius: 5px;
+                    text-align: center;
+                    color: white;
+                    font-weight: bold;
+                    line-height: 25px;">
+                    100%
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            function validateNumber(id, min, max) {
+                let inputElement = document.getElementById(id);
+                let errorElement = document.getElementById(id + "Error");
+
+                if (!inputElement || !errorElement) {
+                    console.error(`Element '${id}' or '${id}Error' not found.`);
+                    return;
+                }
+
+                let value = parseFloat(inputElement.value);
+
+                if (isNaN(value) || value < min || value > max) {
+                    errorElement.style.display = "block";
+                    isValid = false;
+                } else {
+                    errorElement.style.display = "none";
+                }
+            }
+
+            function validateDropdown(id) {
+                let value = document.getElementById(id).value;
+                let errorElement = document.getElementById(id + "Error");
+
+                if (!errorElement) {
+                    console.error(`Error element for '${id}' not found.`);
+                    return;
+                }
+
+                if (value === "") {
+                    errorElement.style.display = "block";
+                    isValid = false;
+                } else {
+                    errorElement.style.display = "none";
+                }
+            }
+
+            validateNumber("age", 10, 100);
+            validateNumber("height", 50, 250);
+            validateNumber("weight", 20, 200);
+            validateNumber("walkingSpeed", 0.1, 10);
+            validateNumber("yearsRunning", 0, 80);
+            validateDropdown("gender");
+            validateDropdown("dominantLeg");
+            validateDropdown("trainingLevel");
+
+            return isValid;
+        }
+
+        async function submitForm(event) {
+            event.preventDefault();
+            
+            if (!validateForm()) {
+                console.error("Form validation failed.");
+                return;
+            }
+            console.log("Ensuring h2 is visible");
+            document.getElementById("formHeading").style.display = "block"; 
+            let formData = {
+                walkingSpeed: parseFloat(document.getElementById("walkingSpeed").value),
+                age: parseFloat(document.getElementById("age").value),
+                height: parseFloat(document.getElementById("height").value),
+                weight: parseFloat(document.getElementById("weight").value),
+                yearsRunning: parseFloat(document.getElementById("yearsRunning").value),
+                Gender: document.getElementById("gender").value === "Male",
+                DominantLeg_Right: document.getElementById("dominantLeg").value === "Right",
+                Level_Recreational: document.getElementById("trainingLevel").value === "Recreational"
+            };
+
+            try {
+                let response = await fetch("http://127.0.0.1:5000/predict", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error("API request failed");
+                }
+
+                let result = await response.json();
+                let healthStatus = result.health_status || "Error retrieving status";
+                let healthPercentage = result.health_percentage || 0;
+
+                // ✅ Keep the form visible (Fix disappearing issue)
+                document.getElementById("injuryForm").style.display = "block";
+
+                // ✅ Display the prediction result
+                let predictionResult = document.getElementById("predictionResult");
+                predictionResult.innerText = healthStatus;
+                predictionResult.style.display = "block"; // Make sure it is visible
+
+                // ✅ Move progress bar below the result
+                let progressContainer = document.getElementById("progressContainer");
+                let progressBar = document.getElementById("healthProgressBar");
+
+                progressContainer.style.display = "block"; // Show the progress bar
+                progressBar.style.width = healthPercentage + "%";
+                progressBar.innerText = healthPercentage + "%";
+
+                // Adjust progress bar color dynamically
+                if (healthPercentage > 70) {
+                    progressBar.style.background = "linear-gradient(135deg, #28a745, #218838)"; // Green
+                } else if (healthPercentage > 40) {
+                    progressBar.style.background = "linear-gradient(135deg, #ffc107, #ff9800)"; // Orange
+                } else {
+                    progressBar.style.background = "linear-gradient(135deg, #dc3545, #c82333)"; // Red
+                }
+
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                document.getElementById("predictionResult").innerText = "Error: Failed to connect to API";
+            }
+        }
+
+       
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("injuryForm").addEventListener("submit", submitForm);
+        });
+    </script>
+
+</body>
+</html>
