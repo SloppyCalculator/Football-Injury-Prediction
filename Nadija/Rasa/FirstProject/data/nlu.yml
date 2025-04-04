@@ -100,15 +100,10 @@ nlu:
 - intent: Common_injuries
   examples: |
     - What are the most common injuries in football?
-
-    - What injuries are most frequently sustained by football players?
-    
-    - Can you list typical injuries associated with playing football?
-    
-    - What are the prevalent injuries in football?
-    
+    - What injuries are most frequently sustained by football players?    
+    - Can you list typical injuries associated with playing football?    
+    - What are the prevalent injuries in football?    
     - Which injuries commonly occur in football athletes?
-    
     - What types of injuries do football players often experience?
     
 - intent: About_ACL
