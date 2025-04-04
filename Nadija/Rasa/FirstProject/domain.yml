@@ -8,8 +8,18 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - About_football
   - Common_injuries
+  - About_Football
+  - About_ACL
+  - About_ACLRecovery
+  - About_ACLfemale
+  - About_concussion
+  - About_RecoverConcussions
+  - Impact_concussion
+  - About_hamstring
+ 
+ 
+
 
 responses:
   utter_greet:
@@ -31,11 +41,44 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_About_football:
-    - text: "Football is a popular sport with different versions worldwide. The two main types are **association football (soccer)**, played with a round ball where teams score by kicking into a goal, and **American football**, played with an oval ball where teams score by carrying or passing it into an end zone. Other versions include Canadian football, Australian rules football, and rugby. The game varies by region but generally involves teamwork, strategy, and scoring points to win."
-
+ 
   utter_Common_injuries:
     - text: "Football players frequently experience injuries such as sprained ankles, hamstring strains, knee injuries (including ACL tears), concussions, and groin pulls. These injuries result from the high-intensity and physical nature of the sport."
+
+  utter_About_Football:
+    - text: |
+        Football is a popular sport with different versions worldwide. The two main types are **association football (soccer)**, played with a round ball where teams score by kicking into a goal, and **American football**, played with an oval ball where teams score by carrying or passing it into an end zone. Other versions include Canadian football, Australian rules football, and rugby. The game varies by region but generally involves teamwork, strategy, and scoring points to win.
+
+  utter_About_ACL:
+    - text: | 
+        Preventing ACL injuries involves strength training, proper warm-ups, neuromuscular conditioning, and using equipment suited to the player's anatomy. For female players, wearing boots designed for women's anatomical differences may help reduce injury risk. citeturn0news12
+
+  utter_About_ACLRecovery:
+    - text: |
+        Recovery from a torn ACL usually takes about 9 to 12 months, depending on the injury's severity and the effectiveness of the rehabilitation program. However, recovery times can vary; for instance, Sam Kerr's recovery extended beyond 12 months due to complications. citeturn0news10
+
+  utter_About_ACLfemale:
+    - text: |
+        Research indicates that female footballers have a higher incidence of ACL injuries due to factors like anatomical differences, hormonal influences, and inadequate training resources. The lack of equipment tailored to women's needs, such as properly fitting boots, also contributes to this increased risk. citeturn0news12
+
+  utter_About_concussion:
+    - text: |
+        Symptoms of a concussion include headaches, dizziness, confusion, nausea, balance problems, and sensitivity to light or noise. Players may also experience memory issues or loss of consciousness. It's crucial to seek immediate medical attention if a concussion is suspected.
+
+  utter_About_RecoverConcussions:
+    - text: |
+        To minimize concussion risks, players should use proper tackling techniques, wear well-fitted protective gear, and adhere to safety rules. Educating players and coaches about concussion symptoms and protocols is also essential
+
+  utter_Impact_concussion:
+    - text: |
+        Repeated concussions can lead to chronic traumatic encephalopathy (CTE), a degenerative brain condition associated with symptoms like memory loss, depression, and cognitive decline. Studies have found a significant prevalence of CTE among former NFL players. citeturn0news11
+
+  utter_About_hamstring:
+    - text: |
+        Treatment for hamstring injuries typically involves rest, ice application, compression, and elevation (RICE). Physical therapy exercises to restore strength and flexibility are also essential. Severe cases may require medical intervention or surgery.
+
+
+
 
 
 

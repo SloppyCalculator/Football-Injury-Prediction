@@ -90,24 +90,89 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
-- intent: About_football
+- intent: About_Football
   examples: |
     - What is foot ball?
     - Tell me about foot ball?
     - Can i know about football?
 
-- intent: Common_injuries
-  examples:
-    -What are the most common injuries in football?
-    
-    -What injuries are most frequently sustained by football players?
-    
-    -Can you list typical injuries associated with playing football?
-    
-    -What are the prevalent injuries in football?
-    
-    -Which injuries commonly occur in football athletes?
-    
-    -What types of injuries do football players often experience?
-    
 
+- intent: Common_injuries
+  examples: |
+    - What are the most common injuries in football?
+
+    - What injuries are most frequently sustained by football players?
+    
+    - Can you list typical injuries associated with playing football?
+    
+    - What are the prevalent injuries in football?
+    
+    - Which injuries commonly occur in football athletes?
+    
+    - What types of injuries do football players often experience?
+    
+- intent: About_ACL
+  examples: |
+    - How can anterior cruciate ligament (ACL) injuries be prevented in football?
+    - What are effective strategies to prevent ACL injuries in football?
+    - How can football players reduce the risk of ACL injuries?
+    - What precautions can footballers take to avoid ACL injuries?
+    - What training methods help in preventing ACL injuries in football?
+    - How can ACL injury prevention programs benefit football players?
+    
+- intent: About_ACLRecovery
+  examples: |
+    - How long does it take to recover from an ACL tear?
+    - What is the usual healing time for a torn ACL?
+    - How much time does ACL injury recovery typically take?
+    - What is the usual recovery period for an ACL tear?
+    - How long does ACL reconstruction recovery usually take?
+    - What is the expected timeframe for ACL tear rehabilitation?
+    - How long does it take to fully heal from an ACL tear?
+
+- intent: About_ACLfemale
+  examples: |
+    - Why are female footballers more prone to ACL injuries?
+    - Why do female footballers have a higher risk of ACL injuries?
+    - What makes female football players more susceptible to ACL injuries?
+    - Why are ACL injuries more common in female footballers?
+    - What factors contribute to the higher ACL injury rate in female footballers?
+
+- intent: About_concussion
+  examples: | 
+    - What are the symptoms of a concussion in football?
+    - How can you tell if a football player has a concussion?
+    - What are the common signs of a concussion in football?
+    - How does a concussion affect football players?
+    - What symptoms indicate a concussion in football?
+
+- intent: About_RecoverConcussions
+  examples: |
+    - How can football players reduce the risk of concussions?
+    - What can football players do to lower their chances of getting a concussion?
+    - How can concussions be prevented in football?
+    - What are effective ways for football players to avoid concussions?
+    - How can the risk of concussion be minimized in football?
+
+- intent: Impact_concussion
+  examples: |
+    - What is the impact of repeated concussions on a football player's health?
+    - How do repeated concussions affect a football players health?
+    - What are the long-term effects of multiple concussions on football players?
+    - How can repeated concussions impact a footballer’s well-being?
+    - What health risks do football players face from repeated concussions?
+   
+- intent: About_hamstring  
+  examples: |
+    - How are hamstring injuries treated in football players?
+    - What are the treatment options for hamstring injuries in football players?
+    - How do football players recover from hamstring injuries?
+    - What is the best way to treat a hamstring injury in football?
+    - How are hamstring strains managed in football players?
+
+
+
+
+
+
+   

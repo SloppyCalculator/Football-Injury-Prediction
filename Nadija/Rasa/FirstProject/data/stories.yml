@@ -31,10 +31,24 @@ stories:
 
 - story: Football
   steps:
-     - intent: About_football
-     - action: utter_About_football
+     - intent: About_Football
+     - action: utter_About_Football
      - intent: Common_injuries
      - action: utter_Common_injuries
+     - intent: About_ACL
+     - action: utter_About_ACL
+     - intent: About_ACLRecovery
+     - action: utter_About_ACLRecovery
+     - intent: About_ACLfemale
+     - action: utter_About_ACLfemale
+     - intent: About_concussion
+     - action: utter_About_concussion
+     - intent: About_RecoverConcussions
+     - action: utter_About_RecoverConcussions
+     - intent: Impact_concussion
+     - action: utter_Impact_concussion
+     - intent: About_hamstring
+     - action: utter_About_hamstring
 
 
 
