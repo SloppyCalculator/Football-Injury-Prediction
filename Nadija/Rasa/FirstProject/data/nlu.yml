@@ -165,7 +165,13 @@ nlu:
     - What is the best way to treat a hamstring injury in football?
     - How are hamstring strains managed in football players?
 
-
+- intent: proper_footwear
+  examples: |
+    - What role does proper footwear play in preventing football injuries?
+    - How does wearing the right footwear help prevent injuries in football?
+    - What impact does proper footwear have on reducing football injuries?
+    - In what ways can appropriate football shoes prevent injuries?
+    - Why is choosing the right football boots important for injury prevention?
 
 
 
