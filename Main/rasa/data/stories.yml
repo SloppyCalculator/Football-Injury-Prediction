@@ -1,0 +1,85 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: About Football
+  steps:
+    - intent: About_Football
+    - action: utter_About_Football
+
+- story: Common Football Injuries
+  steps:
+    - intent: Common_injuries
+    - action: utter_Common_injuries
+
+- story: About ACL Injury
+  steps:
+    - intent: About_ACL
+    - action: utter_About_ACL
+
+- story: ACL Recovery
+  steps:
+    - intent: About_ACLRecovery
+    - action: utter_About_ACLRecovery
+
+- story: ACL Injury in Female Athletes
+  steps:
+    - intent: About_ACLfemale
+    - action: utter_About_ACLfemale
+
+- story: About Concussions in Football
+  steps:
+    - intent: About_concussion
+    - action: utter_About_concussion
+
+- story: Concussion Recovery
+  steps:
+    - intent: About_RecoverConcussions
+    - action: utter_About_RecoverConcussions
+
+- story: Impact of Concussions
+  steps:
+    - intent: Impact_concussion
+    - action: utter_Impact_concussion
+
+- story: Hamstring Injuries in Football
+  steps:
+    - intent: About_hamstring
+    - action: utter_About_hamstring
+
+- story: Proper Footwear for Football
+  steps:
+    - intent: proper_footwear
+    - action: utter_proper_footwear
+
+
+
+
+
