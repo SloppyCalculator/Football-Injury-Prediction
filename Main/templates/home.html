@@ -7,27 +7,64 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Oxanium:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Smooth Scrolling Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+        
         /* General Body Styling */
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #003366, #007700);
+            background: url("{{ url_for('static', filename='Background3.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
             color: #ffffff;
-            margin: 0;
+            margin: 0;          
             padding: 0;
-            overflow: auto; /* Scroll only when necessary */
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-
+        
         /* Header */
         .header {
             display: flex;
-            justify-content: space-between;  /* Keeps everything inside */
+            justify-content: space-between;
             align-items: center;
             background: rgba(0, 0, 0, 0.8);
-            padding: 15px 20px;
+            padding: 15px 5%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             width: 100%;
-            box-sizing: border-box;
             position: fixed;
             top: 0;
             left: 0;
@@ -35,97 +72,174 @@
         }
 
         .header-logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFD700;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
             display: flex;
             align-items: center;
+            white-space: nowrap;
         }
 
-        .header-logo i {
-            margin-right: 10px;
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .logo-text {
+            color: #087a8e;
         }
 
         /* Navigation Links */
         .nav-links {
             display: flex;
-            gap: 15px; /* Space between links */
-            flex-wrap: wrap; /* Prevents overflowing */
+            gap: 25px;
+            align-items: center;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
             transition: color 0.3s;
-            white-space: nowrap; /* Prevents wrapping */
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
-            color: #FFD700;
+            color: #087a8e;
         }
 
-        /* Main Content */
-        .container {
+        .user-greeting {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            gap: 8px;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+        }
+        
+        /* Chatbot Icon */
+        .chatbot-icon {
+            position: fixed;
+            top: 80px; /* Positioned below the header */
+            right: 20px;
+            background-color: #087a8e;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
             justify-content: center;
-            width: 100%;
-            min-height: 100vh;
-            padding: 20px;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
-        .content {
-            margin-top: 80px; /* Prevents content from hiding under the fixed header */
-            padding-bottom: 60px; /* Space for footer */
+        .chatbot-icon:hover {
+            background-color: #2fbfc4;
+            transform: scale(1.1);
+        }
+        
+        /* Main Content */
+        .home {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 150px 5% 100px;
+            width: 100%;
+            margin-top: 80px;
+        }
+
+        .home-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .home .home-content .logo-text {
+            font-size: 75px;
+            font-weight: 600;
+            margin-left: -3px;
+            font-family: 'Ubuntu', sans-serif;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .home .home-content .logo-text span {
+            color: #087a8e;
+        }
+
+        .home .home-content .text-1 {
+            font-size: 50px;
+            margin: 5px 0;
+            font-family: "Oxanium", sans-serif;
+            line-height: 1.2;
+        }
+
+        .home .home-content .text-2 {
+            font-size: 30px;
+            margin: 5px 0;
+            font-family: "Oxanium", sans-serif;
+            line-height: 1.4;
         }
 
         /* Hero Image */
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 50px;
+        }
+
         .hero-image {
-            width: 350px;
+            max-width: 100%;
             height: auto;
+            max-height: 600px;
             border-radius: 15px;
             box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Title & Description */
-        h1 {
-            font-size: 28px;
-            margin-top: 20px;
-            text-transform: uppercase;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
         }
 
         /* Button Container */
         .button-container {
             display: flex;
             gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         /* Football-Themed Buttons */
         button {
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #FFD700;
-            color: #000000;
-            border: none;
-            border-radius: 12px;
-            padding: 15px 40px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
+            display: inline-block;
+            background: none;
+            color: #fff;
+            font-family: "Oxanium", sans-serif;
+            font-size: 20px;
+            padding: 12px 36px;
+            margin-top: 20px;
+            font-weight: 700;
+            border-radius: 6px;
+            border: 2px solid #087a8e;
+            transition: all 0.3s ease;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         button i {
@@ -134,13 +248,8 @@
 
         /* Button Hover and Click Effects */
         button:hover {
-            background-color: #FFA500;
-            transform: scale(1.08);
-        }
-
-        button:active {
-            background-color: #FF8C00;
-            transform: scale(0.96);
+            color: white;
+            background: #087a8e;
         }
 
         /* Footer */
@@ -149,8 +258,14 @@
             padding: 15px;
             width: 100%;
             text-align: center;
-            position: relative;
+            position: fixed;
             bottom: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(100%);
+            pointer-events: none;
+            transition: all 0.4s ease-in-out;
+            z-index: 999;
         }
 
         .footer p {
@@ -160,14 +275,80 @@
         }
 
         .footer .social-icons a {
-            color: #FFD700;
+            color: #087a8e;
             font-size: 20px;
             margin: 0 10px;
             transition: color 0.3s;
         }
 
         .footer .social-icons a:hover {
-            color: #FFA500;
+            color: #2fbfc4;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .home {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+            
+            .hero-image-container {
+                padding-left: 0;
+                margin-top: 50px;
+            }
+            
+            .home-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .button-container {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .home .home-content .text-1 {
+                font-size: 40px;
+            }
+            
+            .home .home-content .logo-text {
+                font-size: 60px;
+            }
+            
+            .home .home-content .text-2 {
+                font-size: 24px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .chatbot-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                top: 75px; /* Adjusted for mobile */
+                right: 15px;
+            }
         }
     </style>
 </head>
@@ -175,26 +356,31 @@
 
     <!-- Header -->
     <div class="header">
-        <div class="header-logo">
-            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
         </div>
+        
         <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="{{ url_for('home') }}">Home</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello</span> 
+            </div>
         </div>
     </div>
 
+    <!-- Chatbot Icon -->
+    <a href="/chat" class="chatbot-icon" id="chatbotIcon">
+        <i class="fa fa-comments"></i>
+    </a>
+
     <!-- Main Content -->
-    <div class="container">
-        <div class="content">
-            <!-- Football Player Image -->
-            <img src="{{ url_for('static', filename='homeImage.png') }}" alt="Football Player" class="hero-image">
-            
+    <section class="home" id="home">
+        <div class="home-content">
             <!-- Welcome Text -->
-            <h1>⚽ Welcome to FitKick Pro ⚽</h1>
-            <p>Your Personalized Football Injury Prediction System</p>
-            
+            <div class="text-1">Welcome to</div>
+            <div class="logo-text"><span>F</span>it<span>K</span>ick&nbsp;<span>P</span>ro</div>
+            <div class="text-2">Your Personalized Football<br>Injury Prediction System</div>
             <!-- Buttons -->
             <div class="button-container">
                 <a href="{{ url_for('sign') }}">
@@ -205,10 +391,15 @@
                 </a>
             </div>
         </div>
-    </div>
+        
+        <!-- Football Player Image -->
+        <div class="hero-image-container">
+            <img src="{{ url_for('static', filename='homeImage.png') }}" alt="Football Player" class="hero-image">
+        </div>
+    </section>
 
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer" id="pageFooter">
         <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
         <div class="social-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -217,6 +408,25 @@
         </div>
     </div>
 
+    <script>
+        // Debounced scroll handler for footer appearance
+        let debounceTimer;
+        window.addEventListener("scroll", () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const footer = document.getElementById("pageFooter");
+                const { scrollY, innerHeight } = window;
+                const { scrollHeight } = document.documentElement;
+
+                const isAtBottom = scrollY + innerHeight >= scrollHeight - 10;
+                footer.style.opacity = isAtBottom ? "1" : "0";
+                footer.style.transform = isAtBottom ? "translateY(0)" : "translateY(100%)";
+                footer.style.pointerEvents = isAtBottom ? "auto" : "none";
+            }, 100);
+        });
+
+        // Trigger on page load
+        window.dispatchEvent(new Event("scroll"));
+    </script>
 </body>
 </html>
-

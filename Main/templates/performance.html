@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Oxanium:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+        
+        /* General Page Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url("{{ url_for('static', filename='Background2.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;  /* Keeps everything inside */
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo  {
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+
+        .logo-text{
+            color: #087a8e;
+            
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 25px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap; /* Prevents wrapping */
+        }
+
+        .nav-links a:hover {
+            color: #087a8e;
+        }
+
+        /* Centered Form Container */
+        .container {
+            background: rgba(58, 61, 63, 0.6); /* Transparent dark background */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            margin: 120px 0 150px; /* Adjusted margin for header and footer */
+            color: #2d3436;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #dee0e5;
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: 400;
+            display: block;
+            margin: 10px 0 5px;
+            color: #dee0e5;
+        }
+
+        .instruction {
+            font-weight: 600;
+            font-size: 15px;
+            color: #e02828;
+            margin: 15px 0;
+        }
+
+        input {
+            width: 85%;
+            background: rgba(255, 255, 255, 0);
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-color: #087a8e;
+            border-radius: 6px;
+            padding: 15px 15px 15px 40px;
+            margin: 10px auto; /* centers horizontally */
+            display: block;     /* required for margin auto to work */
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #0984e3;
+            outline: none;
+            box-shadow: 0 0 8px rgba(9, 132, 227, 0.3);
+        }
+
+        button {
+            padding: 14px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+        }
+
+        .predict-btn {
+            background: linear-gradient(135deg, #014fa2, #0099cc);
+        }
+
+        .predict-btn:hover {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.03);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #3A7D20, #7BAE40);
+            margin-top: 10px;
+        }
+
+        .reset-btn:hover {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.03);
+        }
+
+        .prediction-box {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(50, 50, 50, 0.5);
+            animation: fadeIn 0.5s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .low { background: linear-gradient(135deg, #b22222, #ff4d4d); }
+        .medium { background: linear-gradient(135deg, #b8860b, #ffd700 ); }
+        .high { background: linear-gradient(135deg, #228b22, #66cc66); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .view-report-btn {
+            background: linear-gradient(135deg, #B71C1C, #de2b2b);
+            margin-top: 10px;
+        }
+
+        .view-report-btn:hover {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.03);
+        }
+
+        .error {
+            color: #e02828;
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(100%);
+            pointer-events: none;
+            transition: all 0.4s ease-in-out;
+            z-index: 999;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .footer .social-icons a {
+            color: #087a8e;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #2fbfc4;
+        }
+
+        /* Adjust container margin to account for footer */
+        .container {
+            margin: 120px 0 100px; /* Reduced bottom margin to prevent overlap */
+        }
+    </style>
+    <script>
+        function resetForm() {
+            // Reset all form fields
+            document.getElementById("prediction-form").reset();
+            
+            // Hide the prediction box if it exists
+            let predictionBox = document.getElementById("prediction-box");
+            if (predictionBox) {
+                predictionBox.style.display = "none";
+            }
+
+            // Hide the view report button
+            let reportButton = document.querySelector(".view-report-btn");
+            if (reportButton) {
+                reportButton.style.display = "none";
+            }
+
+            // Clear any previous error messages
+            document.querySelectorAll('.error').forEach(error => error.remove());
+
+            // Ensure no residual values in input fields (for better browser compatibility)
+            let inputs = document.querySelectorAll("#prediction-form input");
+            inputs.forEach(input => input.value = '');
+        }
+
+        function validateForm(event) {
+            const form = event.target;
+            const height = form.height_cm.value;
+            const weight = form.weight_kg.value;
+            const potential = form.potential.value;
+            const dribbling = form.dribbling.value;
+            const passing = form.pas.value;
+            const shooting = form.sho.value;
+            const acceleration = form.acceleration.value;
+            const stamina = form.stamina.value;
+    
+            let isValid = true;
+    
+            // Clear previous error messages
+            document.querySelectorAll('.error').forEach(error => error.remove());
+    
+            // Validate height (140 to 220 cm)
+            if (height < 140 || height > 220) {
+                isValid = false;
+                const heightError = document.createElement('p');
+                heightError.classList.add('error');
+                heightError.textContent = 'Invalid Height! Please enter a valid height.';
+                form.height_cm.after(heightError);  // Appending error below the height field
+
+                // Scroll to the height input field if there's an error
+                form.height_cm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Validate weight (30 to 200 kg)
+            if (weight < 30 || weight > 200) {
+                isValid = false;
+                const weightError = document.createElement('p');
+                weightError.classList.add('error');
+                weightError.textContent = 'Invalid weight! Please enter a valid weight.';
+                form.weight_kg.after(weightError);  // Appending error below the weight field
+
+                // Scroll to the weight input field if there's an error
+                form.weight_kg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Validate potential, dribbling, passing, shooting, acceleration, stamina (0 to 100)
+            const fields = ['potential', 'dribbling', 'pas', 'sho', 'acceleration', 'stamina'];
+            fields.forEach(field => {
+                if (form[field].value < 0 || form[field].value > 100) {
+                    isValid = false;
+                    const error = document.createElement('p');
+                    error.classList.add('error');
+                    error.textContent = `${field.charAt(0).toUpperCase() + field.slice(1)} should be between 0 and 100.`;
+                    form[field].after(error);
+                }
+            });
+    
+            // If form is not valid, prevent submission
+            if (!isValid) {
+                event.preventDefault();
+            }
+        }
+    </script>    
+</head>
+
+<body>
+     <!-- Header -->
+     <div class="header">
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
+        </div>
+        
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello, {{ username }}</span> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Football Player Performance Prediction</h1>
+        <form id="prediction-form" action="/predict_performance" method="POST" onsubmit="validateForm(event)">
+            <label for="height_cm">Height (cm):</label>
+            <input type="number" name="height_cm" required value="{{ request.form.get('height_cm', '') }}">
+
+            <label for="weight_kg">Weight (kg):</label>
+            <input type="number" name="weight_kg" required value="{{ request.form.get('weight_kg', '') }}">
+
+            <p class="instruction">⚡ Rate the player's abilities below on a scale of 0 to 100.</p>
+
+            <label for="potential">Potential:</label>
+            <input type="number" name="potential" min="0" max="100" required value="{{ request.form.get('potential', '') }}">
+
+            <label for="dribbling">Dribbling:</label>
+            <input type="number" name="dribbling" min="0" max="100" required value="{{ request.form.get('dribbling', '') }}">
+
+            <label for="pas">Passing:</label>
+            <input type="number" name="pas" min="0" max="100" required value="{{ request.form.get('pas', '') }}">
+
+            <label for="sho">Shooting:</label>
+            <input type="number" name="sho" min="0" max="100" required value="{{ request.form.get('sho', '') }}">
+
+            <label for="acceleration">Acceleration:</label>
+            <input type="number" name="acceleration" min="0" max="100" required value="{{ request.form.get('acceleration', '') }}">
+
+            <label for="stamina">Stamina:</label>
+            <input type="number" name="stamina" min="0" max="100" required value="{{ request.form.get('stamina', '') }}">
+
+            <button type="submit" class="predict-btn">Predict</button>
+            <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+        </form>
+
+        {% if prediction %}
+        <div id="prediction-box" class="prediction-box {{ prediction.lower() }}">
+            <h2>Performance Category: {{ prediction }}</h2>
+        </div>
+        <form action="/report" method="POST">
+            <input type="hidden" name="height_cm" value="{{ request.form.get('height_cm', '') }}">
+            <input type="hidden" name="weight_kg" value="{{ request.form.get('weight_kg', '') }}">
+            <input type="hidden" name="potential" value="{{ request.form.get('potential', '') }}">
+            <input type="hidden" name="dribbling" value="{{ request.form.get('dribbling', '') }}">
+            <input type="hidden" name="pas" value="{{ request.form.get('pas', '') }}">
+            <input type="hidden" name="sho" value="{{ request.form.get('sho', '') }}">
+            <input type="hidden" name="acceleration" value="{{ request.form.get('acceleration', '') }}">
+            <input type="hidden" name="stamina" value="{{ request.form.get('stamina', '') }}">
+            <input type="hidden" name="prediction" value="{{ prediction }}">
+            
+            <button type="submit" class="view-report-btn">View Full Report</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="pageFooter">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Previous scripts remain the same...
+
+        // Add the scroll behavior for footer from first example
+        let debounceTimer;
+        window.addEventListener("scroll", () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const footer = document.getElementById("pageFooter");
+                const { scrollY, innerHeight } = window;
+                const { scrollHeight } = document.documentElement;
+
+                const isAtBottom = scrollY + innerHeight >= scrollHeight - 10;
+                footer.style.opacity = isAtBottom ? "1" : "0";
+                footer.style.transform = isAtBottom ? "translateY(0)" : "translateY(100%)";
+                footer.style.pointerEvents = isAtBottom ? "auto" : "none";
+            }, 100);
+        });
+
+        // Trigger on page load
+        window.dispatchEvent(new Event("scroll"));
+    </script>
+</body>
+
+</html>

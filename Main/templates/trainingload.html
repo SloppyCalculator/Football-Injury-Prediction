@@ -5,20 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training Load Prediction - FitKick Pro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Oxanium:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
     
     <style>
+        /* Smooth Scrolling Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+        
         /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #003366, #007700);
-            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            background: url("{{ url_for('static', filename='Background2.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            justify-content: center;
-            align-items: center;
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         /* Header */
@@ -28,155 +56,234 @@
             align-items: center;
             background: rgba(0, 0, 0, 0.8);
             padding: 15px 20px;
-            position: fixed;
-            top: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             width: 100%;
             box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
             z-index: 1000;
         }
 
         .header-logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFD700;
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
             display: flex;
             align-items: center;
         }
 
-        .header-logo i {
-            margin-right: 10px;
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
         }
 
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .logo-text {
+            color: #087a8e;
+        }
+
+        /* Navigation Links */
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 25px;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
             transition: color 0.3s;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
-            color: #FFD700;
+            color: #087a8e;
+        }
+
+        /* User Greeting */
+        .user-greeting {
+            display: flex;
+            align-items: center;
+            font-family: 'Oxanium', sans-serif;
+            font-size: 16px;
+            gap: 8px;
+        }
+
+        .user-greeting i {
+            color: #00e1ff;
+            font-size: 20px;
+        }
+
+        /* Main Content Wrapper */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+            padding: 20px;
+            margin-top: 80px; /* Adjusted for header */
+            margin-bottom: 80px; /* Adjusted for footer */
         }
 
         /* Container */
         .container {
             max-width: 700px;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.85);
+            width: 100%;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
-            flex-grow: 1;
-            margin-top: 100px;
-            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(8, 122, 142, 0.4);
         }
 
         h1 {
             text-transform: uppercase;
+            color: #ffffff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            font-family: 'Oxanium', sans-serif;
         }
 
         .trainingload-result, .trainingload-category, .trainingload-recommendation {
             font-size: 24px;
             font-weight: bold;
             margin: 20px 0;
-            color: #FFD700;
+            color: #ffffff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            background: rgba(255, 215, 0, 0.2);
+            padding: 15px;
+            background: rgba(8, 122, 142, 0.3);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            width: 100%;
+            border: 1px solid rgba(8, 122, 142, 0.5);
         }
 
         .error-message {
             font-size: 20px;
-            color: red;
+            color: #ff6b6b;
             margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
         }
 
         /* Back Button */
         .back-button {
             font-size: 18px;
-            color: #FFD700;
-            background: rgba(255, 215, 0, 0.2);
-            border: 2px solid #FFD700;
-            padding: 10px 20px;
+            color: white;
+            background: rgba(8, 122, 142, 0.6);
+            border: 2px solid #087a8e;
+            padding: 15px 40px;
             border-radius: 10px;
             cursor: pointer;
-            transition: background 0.3s, color 0.3s;
+            transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 30px;
+            font-family: 'Oxanium', sans-serif;
         }
 
         .back-button:hover {
-            background: #FFD700;
-            color: #003366;
+            background: rgba(8, 122, 142, 0.8);
+            box-shadow: 0 0 15px rgba(8, 122, 142, 0.5);
+            transform: translateY(-2px);
         }
 
         /* Footer */
         .footer {
             background: rgba(0, 0, 0, 0.8);
             padding: 15px;
-            text-align: center;
             width: 100%;
+            text-align: center;
             position: fixed;
             bottom: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
         }
 
         .footer p {
             font-size: 14px;
-            color: #ddd;
             margin: 5px 0;
+            color: #ddd;
         }
 
-        .social-icons a {
-            color: #FFD700;
+        .footer .social-icons a {
+            color: #087a8e;
             font-size: 20px;
             margin: 0 10px;
             transition: color 0.3s;
         }
 
-        .social-icons a:hover {
-            color: #FFA500;
+        .footer .social-icons a:hover {
+            color: #2fbfc4;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <div class="header">
-        <div class="header-logo">
-            <i class="fa fa-line-chart"></i> FitKick Pro
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
         </div>
+        
         <div class="nav-links">
             <a href="{{ url_for('home') }}">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello, {{ username }}</span> 
+            </div>
         </div>
     </div>
 
-    <div class="container">
-        <h1>Training Load Prediction Result</h1>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Training Load Prediction Result</h1>
 
-        {% if error %}
-            <div class="error-message">Error: {{ error }}</div>
-        {% else %}
-            <div class="trainingload-result"><i class="fa fa-line-chart"></i> Predicted Training Load: <span id="trainingloadValue">{{ prediction }}</span></div>
-            <div class="trainingload-category" id="trainingloadCategory"></div>
-            <div class="trainingload-recommendation" id="trainingloadRecommendation"></div>
-        {% endif %}
+            {% if error %}
+                <div class="error-message">Error: {{ error }}</div>
+            {% else %}
+                <div class="trainingload-result"><i class="fa fa-line-chart"></i> Predicted Training Load: <span id="trainingloadValue">{{ (prediction * 100)|round(2) }}%</span></div>
+                <div class="trainingload-category" id="trainingloadCategory"></div>
+                <div class="trainingload-recommendation" id="trainingloadRecommendation"></div>
+            {% endif %}
 
-        <a href="{{ url_for('home') }}" class="back-button"><i class="fa fa-arrow-left"></i> Back to Home</a>
+            <a href="{{ url_for('home') }}" class="back-button"><i class="fa fa-arrow-left"></i> Back to Home</a>
+        </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
         <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
         <div class="social-icons">
@@ -187,29 +294,28 @@
     </div>
 
     <script>
-        // Assuming the predicted training load value is available in the `prediction` variable.
-        const trainingLoadValue = {{ prediction | tojson }};
+        document.addEventListener("DOMContentLoaded", function() {
+            const trainingLoadValue = parseFloat("{{ prediction }}");
+            let category = "";
+            let recommendation = "";
 
-        let category = '';
-        let recommendation = '';
+            if (trainingLoadValue >= 0.81) {
+                category = "<i class='fa fa-exclamation-triangle'></i> Very High Load";
+                recommendation = "<i class='fa fa-bed'></i> Rest and recovery recommended to prevent overtraining.";
+            } else if (trainingLoadValue >= 0.61) {
+                category = "<i class='fa fa-exclamation-circle'></i> High Load";
+                recommendation = "<i class='fa fa-heartbeat'></i> Monitor fatigue closely, consider light recovery.";
+            } else if (trainingLoadValue >= 0.41) {
+                category = "<i class='fa fa-bar-chart'></i> Moderate Load";
+                recommendation = "<i class='fa fa-refresh'></i> Continue with balanced training and recovery.";
+            } else {
+                category = "<i class='fa fa-check-circle'></i> Low Load";
+                recommendation = "<i class='fa fa-arrow-up'></i> Increase intensity and volume gradually.";
+            }
 
-        if (trainingLoadValue >= 0.81) {
-            category = "<i class='fa fa-exclamation-triangle'></i> Very High Load";
-            recommendation = "<i class='fa fa-bed'></i> Rest and recovery recommended to prevent overtraining.";
-        } else if (trainingLoadValue >= 0.61) {
-            category = "<i class='fa fa-exclamation-circle'></i> High Load";
-            recommendation = "<i class='fa fa-heartbeat'></i> Monitor fatigue closely, consider light recovery.";
-        } else if (trainingLoadValue >= 0.41) {
-            category = "<i class='fa fa-bar-chart'></i> Moderate Load";
-            recommendation = "<i class='fa fa-refresh'></i> Continue with balanced training and recovery.";
-        } else {
-            category = "<i class='fa fa-check-circle'></i> Low Load";
-            recommendation = "<i class='fa fa-arrow-up'></i> Increase intensity and volume gradually.";
-        }
-
-        // Set the values in the HTML
-        document.getElementById("trainingloadCategory").innerHTML = category;
-        document.getElementById("trainingloadRecommendation").innerHTML = recommendation;
+            document.getElementById("trainingloadCategory").innerHTML = category;
+            document.getElementById("trainingloadRecommendation").innerHTML = recommendation;
+        });
     </script>
 </body>
 </html>

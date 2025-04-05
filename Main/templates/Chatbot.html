@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitKick Pro - AI Assistant</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Smooth Scrolling Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+        
+        /* General Styles */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("{{ url_for('static', filename='Background2.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .logo-text {
+            color: #087a8e;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: #087a8e;
+        }
+
+        /* Main Content Container */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 100px 20px 80px;
+            box-sizing: border-box;
+        }
+
+        /* Chat Container Styles */
+        .chat-container {
+            width: 380px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-header {
+            background: #087a8e;
+            padding: 20px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Oxanium', sans-serif;
+        }
+
+        .chat-header::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #4CD964;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chat-box {
+            height: 500px;
+            padding: 20px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: rgba(8, 122, 142, 0.5);
+            border-radius: 3px;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: messageAppear 0.3s forwards;
+        }
+
+        @keyframes messageAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-message, .bot-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 18px;
+            line-height: 1.4;
+            font-size: 0.95rem;
+        }
+
+        .user-message {
+            background: #087a8e;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot-message {
+            background: rgba(240, 240, 240, 0.9);
+            color: #1A1A1A;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .input-box {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-box input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid rgba(8, 122, 142, 0.3);
+            border-radius: 24px;
+            outline: none;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .input-box input:focus {
+            border-color: #087a8e;
+        }
+
+        .input-box button {
+            background: #087a8e;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .input-box button:hover {
+            transform: scale(1.05);
+            background: #0a8ca3;
+        }
+
+        .input-box button:active {
+            transform: scale(0.95);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: rgba(240, 240, 240, 0.9);
+            border-radius: 18px;
+            width: fit-content;
+            margin-bottom: 16px;
+            opacity: 0;
+        }
+
+        .typing-indicator.active {
+            opacity: 1;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.4s ease-in-out;
+            pointer-events: none;
+        }
+
+        .footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+            font-family: 'Oxanium', sans-serif;
+        }
+
+        .footer .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .footer .social-icons a {
+            color: #087a8e;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer .social-icons a:hover {
+            color: #2fbfc4;
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .logout-btn {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logout-btn:hover {
+            color: #FF6347;
+        }
+
+        @media (max-width: 480px) {
+            .chat-container {
+                width: 95%;
+                border-radius: 16px;
+            }
+            
+            .chat-box {
+                height: 60vh;
+            }
+            
+            .footer .social-icons {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Chat Container -->
+    <div class="main-container">
+        <div class="chat-container">
+            <div class="chat-header">
+                <i class="fa fa-comments"></i> FitKick AI Assistant
+            </div>
+            <div class="chat-box" id="chat-box">
+                <div class="message">
+                    <div class="bot-message">
+                        Hello! I'm your FitKick AI assistant. How can I help you with your fitness journey today?
+                    </div>
+                </div>
+                <div class="typing-indicator" id="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" id="user-input" placeholder="Ask about fitness, injuries, or performance...">
+                <button onclick="sendMessage()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9" stroke="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="pageFooter">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    function showTypingIndicator() {
+        typingIndicator.classList.add('active');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+        typingIndicator.classList.remove('active');
+    }
+
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        // Add user message to chat
+        appendMessage(message, true);
+        userInput.value = '';
+
+        // Show typing indicator
+        showTypingIndicator();
+
+        try {
+            // Send message to Rasa server
+            let response = await fetch("http://localhost:4000/chatbot", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ sender: "user", message: message })
+            });
+
+            let data = await response.json();
+
+            // Hide typing indicator and show bot response
+            hideTypingIndicator();
+            if (data.length > 0) {
+                data.forEach(botResponse => {
+                    appendMessage(botResponse.text, false);
+                });
+            } else {
+                appendMessage("Sorry, I didn't understand that. I'm specialized in fitness topics - try asking about workouts, injuries, or performance.", false);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            hideTypingIndicator();
+            appendMessage("Oops! Something went wrong. Please try again.", false);
+        }
+    }
+
+    function appendMessage(text, isUser) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message';
+        messageDiv.innerHTML = `
+            <div class="${isUser ? 'user-message' : 'bot-message'}">
+                ${text}
+            </div>
+        `;
+        chatBox.insertBefore(messageDiv, typingIndicator);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Focus input on load
+    userInput.focus();
+    function insertQuickReply(text) {
+        const input = document.getElementById('user-input');
+        input.value = text;
+        input.focus();
+    }
+
+    function checkFooterVisibility() {
+        const footer = document.getElementById('pageFooter');
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const pageHeight = document.documentElement.scrollHeight;
+        
+        // Show footer when scrolled to bottom (with 50px threshold)
+        if (pageHeight - scrollPosition < 50) {
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+    }
+
+    // Initialize footer visibility
+    window.addEventListener('scroll', checkFooterVisibility);
+    window.addEventListener('resize', checkFooterVisibility);
+    window.addEventListener('load', checkFooterVisibility);
+
+    // Auto-focus input when clicking anywhere in chat container
+    document.querySelector('.chat-container').addEventListener('click', function() {
+        document.getElementById('user-input').focus();
+    });
+
+    // Allow sending message with Ctrl+Enter for multiline
+    userInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Improved message handling with markdown support
+    function appendMessage(text, isUser) {
+        // Simple markdown to HTML conversion
+        const formattedText = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // bold
+            .replace(/\*(.*?)\*/g, '<em>$1</em>') // italic
+            .replace(/\n/g, '<br>'); // line breaks
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message';
+        messageDiv.innerHTML = `
+            <div class="${isUser ? 'user-message' : 'bot-message'}">
+                ${formattedText}
+            </div>
+        `;
+        chatBox.insertBefore(messageDiv, typingIndicator);
+        
+        // Smooth scroll to bottom
+        setTimeout(() => {
+            chatBox.scrollTo({
+                top: chatBox.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 50);
+    }
+
+    // Focus input on load
+    userInput.focus();
+
+
+          
+    </script>
+</body>
+</html>

@@ -4,132 +4,524 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Injury Prediction Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Oxanium:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
     <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary: #087a8e;
+            --primary-dark: #008bcc;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --error: #ff4545;
+            --success: #087a8e;
+            --warning: #ffbe0b;
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: rgba(255, 255, 255, 0.1);
+        }
+
+        
+
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+
+         /* Header */
+         .header {
+            display: flex;
+            justify-content: space-between;  /* Keeps everything inside */
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo  {
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+
+        .logo-text{
+            color: #087a8e;
+            
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 25px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap; /* Prevents wrapping */
+        }
+
+        .nav-links a:hover {
+            color: #087a8e;
+        }
+
+
         /* General Page Styling */
         body {
-            font-family: "Poppins", sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            /* background: var(--bg-dark); */
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            justify-content: right;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            padding: 2rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: url("{{ url_for('static', filename='injury.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image */
         }
+
+
+
+        
+
 
         /* Centered Form Container */
         .container {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 380px;
-            text-align: center;
-            transition: 0.3s;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 24px;
+            width: 100%;
+            background:transparent; 
+            max-width: 520px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--input-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.6s ease-out;
+            /* padding-bottom: 80px; Space for footer */
+            margin-top: 100px;   /* space below header */
+            margin-bottom: 100px; /* space above footer */
+
         }
-        .container:hover {
-            transform: scale(1.02);
+        
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Heading Styling */
         h2 {
-            color: #333;
-            font-size: 22px;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, var(--primary), #80ffbb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideDown 0.5s ease-out;
         }
+
+       
+
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin-bottom: 1.75rem;
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+        .form-group:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
 
         /* Labels */
         label {
-            font-weight: 600;
+            margin-top: 15px;;
+            font-weight: 500;
             display: block;
-            text-align: left;
-            margin-top: 10px;
-            color: #444;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .form-group:focus-within label {
+            color: var(--primary);
         }
 
         /* Input Fields */
         input, select {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: 0.2s ease-in-out;
+            padding: 1rem;
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--input-bg);
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
+
+        /* Fix for dropdown text color */
+        select option {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300ff95' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2rem;
+            padding-right: 3rem;
+        }
+
         input:focus, select:focus {
-            border-color: #007bff;
             outline: none;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(0, 255, 149, 0.1);
+        }
+
+        input:hover, select:hover {
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* Submit Button */
         button {
-            margin-top: 20px;
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
+            padding: 1.125rem;
+            background: var(--primary);
+            color: #000000;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
         }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
         button:hover {
-            background: linear-gradient(135deg, #0056b3, #003f7f);
-            transform: scale(1.05);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 255, 149, 0.2);
         }
 
-        /* Progress Bar Styling */
-        #progressContainer {
-            display: none;
-            text-align: left;
-            margin-top: 20px;
+        button:hover::after {
+            transform: translateX(100%);
         }
 
-        #formHeading {
-            display: block !important;
-            margin-bottom: 15px;
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-
-        #healthProgressBar {
-            width: 0%;
-            height: 25px;
-            background: green;
-            border-radius: 5px;
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            line-height: 25px;
-            transition: width 0.5s ease-in-out;
+        button:active {
+            transform: translateY(0);
         }
 
         /* Error Messages */
         .error {
-            color: red;
-            font-size: 12px;
-            text-align: left;
-            margin-top: 5px;
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Prediction Result */
+        #predictionResult {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--input-border);
+            animation: fadeIn 0.5s ease-out;
             display: none;
         }
 
-        /* Animation for Input Fields */
-        input, select {
-            transition: all 0.3s ease-in-out;
+        /* Progress Bar Container */
+        #progressContainer {
+            margin-top: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
         }
 
+        /* Health Progress Bar */
+        .progress-bg {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            height: 12px;
+            overflow: hidden;
+            margin-top: 0.75rem;
+            position: relative;
+        }
+
+        #formSubHeading {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: -1.25rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: -0.3px;
+            background: linear-gradient(to right, var(--text-secondary), #eff8f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideDown 0.5s ease-out;
+        }
+
+
+        #healthProgressBar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 8px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        background-color 0.3s ease;
+            width: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #healthProgressBar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Health Status Text */
+        #healthStatus {
+            margin-top: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            input, select, button {
+                font-size: 1rem;
+                padding: 0.875rem;
+            }
+        }
+
+
+
+
+
+
+       
+
+
+
+        
+
+
+        /*Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(100%);
+            pointer-events: none;
+            transition: all 0.4s ease-in-out;
+            z-index: 999;
+        }
+
+
+
+        
+
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .footer .social-icons a {
+            color: #087a8e;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #2fbfc4;
+        }
+
+
+
+
+
+        
     </style>
 </head>
 
 <body>
 
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
+        </div>
+        
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello, {{ username }}</span> 
+            </div>
+        </div>
+    </div>
+
+
     <div class="container">
-        <h2 id="formHeading">Injury Prediction Form</h2>
+        <h2 id="formHeading">Injury Scope </h2>
+        <h3 id="formSubHeading">Step ahead of injuries</h3>
+
 
         <form id="injuryForm">
             <label for="age">Age</label>
@@ -196,6 +588,17 @@
                     100%
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer" id="pageFooter">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
 
@@ -275,7 +678,7 @@
             };
 
             try {
-                let response = await fetch("http://127.0.0.1:5000/injury_predict", {
+                let response = await fetch("http://127.0.0.1:4000/injury_predict", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData)
@@ -289,15 +692,15 @@
                 let healthStatus = result.health_status || "Error retrieving status";
                 let healthPercentage = result.health_percentage || 0;
 
-                // ✅ Keep the form visible (Fix disappearing issue)
+                // Keep the form visible (Fix disappearing issue)
                 document.getElementById("injuryForm").style.display = "block";
 
-                // ✅ Display the prediction result
+                // Display the prediction result
                 let predictionResult = document.getElementById("predictionResult");
                 predictionResult.innerText = healthStatus;
                 predictionResult.style.display = "block"; // Make sure it is visible
 
-                // ✅ Move progress bar below the result
+                //  Move progress bar below the result
                 let progressContainer = document.getElementById("progressContainer");
                 let progressBar = document.getElementById("healthProgressBar");
 
@@ -326,6 +729,30 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("injuryForm").addEventListener("submit", submitForm);
         });
+
+
+             /*footer trans*/
+        window.addEventListener("scroll", () => {
+            const footer = document.getElementById("pageFooter");
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            if (scrollY + windowHeight >= docHeight - 10) {
+                footer.style.opacity = "1";
+                footer.style.transform = "translateY(0)";
+                footer.style.pointerEvents = "auto";
+            } else {
+                footer.style.opacity = "0";
+                footer.style.transform = "translateY(100%)";
+                footer.style.pointerEvents = "none";
+            }
+        });
+
+        
+
+        
+
     </script>
 
 </body>

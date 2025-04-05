@@ -5,15 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitKick Pro - Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Oxanium:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
+            background: url("{{ url_for('static', filename='Background3.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #002244, #004d00);
-            color: white;
             text-align: center;
-            padding-bottom: 80px; /* Space for footer */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -22,10 +44,12 @@
         /* Header */
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between;  /* Keeps everything inside */
             align-items: center;
             background: rgba(0, 0, 0, 0.8);
             padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             width: 100%;
             box-sizing: border-box;
             position: fixed;
@@ -34,35 +58,62 @@
             z-index: 1000;
         }
 
-        .header-logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFD700;
-            display: flex;
-            align-items: center;
-        }
-
-        .header-logo i {
+        .header-logo  {
             margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
         }
 
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+
+        .logo-text{
+            color: #087a8e;
+            
+        }
+
+        /* Navigation Links */
         .nav-links {
+            color: white;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            gap: 25px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 15px;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
             transition: color 0.3s;
+            white-space: nowrap; /* Prevents wrapping */
         }
 
         .nav-links a:hover {
-            color: #FFD700;
+            color: #087a8e;
         }
 
         /* Main Container */
@@ -70,54 +121,61 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
-            padding: 120px 40px 20px;
+            padding: 120px 40px 150px; /* Increased bottom padding for a bigger gap */
             justify-content: center;
             align-items: center;
             flex-grow: 1; /* This makes sure the container takes up available space */
+            max-width: 1000px; /* Added max-width for better spacing */
+            margin: 0 auto; /* Center the container */
         }
 
         .button-box {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(58, 61, 63, 0.6);
             border-radius: 20px;
-            padding: 50px 25px; /* Increased padding to elongate the button */
+            padding: 50px 25px; /* Increased padding for larger buttons */
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
             height: 300px; /* Increased height */
             justify-content: space-evenly; /* Ensure vertical alignment of icon and text */
+            color: #003366; /* Text color */
         }
 
         .button-box:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 25px #087a8e;
         }
 
         .button-box i {
-            font-size: 50px;
-            color: #FFD700;
-            margin-bottom: 15px;
+            font-size: 60px; /* Increased icon size */
+            color: #087a8e;
+            margin-bottom: 20px; /* Increased margin */
         }
 
         .button-box div {
-            font-size: 20px;
+            font-size: 24px; /* Increased text size */
             font-weight: bold;
-            color: #FFD700;
+            color: #003366; /* Text color */
         }
 
         /* Footer */
         .footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
             width: 100%;
             text-align: center;
             position: fixed;
             bottom: 0;
             left: 0;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(100%);
+            pointer-events: none;
+            transition: all 0.4s ease-in-out;
+            z-index: 999;
         }
 
         .footer p {
@@ -127,47 +185,66 @@
         }
 
         .footer .social-icons a {
-            color: #FFD700;
-            font-size: 22px;
-            margin: 0 12px;
+            color: #087a8e;
+            font-size: 20px;
+            margin: 0 10px;
             transition: color 0.3s;
         }
 
         .footer .social-icons a:hover {
-            color: #FFA500;
+            color: #2fbfc4;
+        }
+
+        /* Adjust container padding to account for footer */
+        .container {
+            padding-bottom: 180px; /* Increased bottom padding to prevent content from being hidden behind footer */
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="header-logo">
-            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+    <!-- Header and Content -->
+       <!-- Header -->
+     <div class="header">
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
         </div>
+        
         <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="{{ url_for('home') }}">Home</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello, {{ username }}</span> 
+            </div>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="container">
         <!-- Evaluate Training Load Button -->
         <a href="{{ url_for('tl_form') }}" class="button-box">
             <i class="fa fa-tachometer"></i>
             <div>Evaluate Training Load</div>
         </a>
+        <!-- Chart below the button -->
+        <div class="chart-container">
+            <canvas id="trainingLoadChart"></canvas>
+        </div>
 
         <!-- Evaluate Match Load Button -->
         <a href="{{ url_for('ml_form') }}" class="button-box">
             <i class="fa fa-line-chart"></i>
             <div>Evaluate Match Load</div>
         </a>
+        <!-- Chart below the button -->
+        <div class="chart-container">
+            <canvas id="matchLoadChart"></canvas>
+        </div>
     </div>
 
+
+
     <!-- Footer -->
-    <div class="footer">
+      <!-- Footer -->
+      <div class="footer" id="pageFooter">
         <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
         <div class="social-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -175,5 +252,80 @@
             <a href="#"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
+    <script>
+        // Fetch training load data from Flask backend
+        fetch('/get_training_load_data')
+            .then(response => response.json())
+            .then(data => {
+                var ctx1 = document.getElementById('trainingLoadChart').getContext('2d');
+                var trainingLoadChart = new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        // Dynamically set the labels based on the length of the data
+                        labels: Array.from({ length: data.length }, (_, index) => `Load ${index + 1}`),
+                        datasets: [{
+                            label: 'Training Load',
+                            data: data,  // The data from Flask
+                            backgroundColor: 'rgba(255, 165, 0, 0.6)',
+                            borderColor: 'rgba(255, 165, 0, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+
+        // Fetch match load data from Flask backend
+        fetch('/get_match_load_data')
+            .then(response => response.json())
+            .then(data => {
+                var ctx2 = document.getElementById('matchLoadChart').getContext('2d');
+                var matchLoadChart = new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        // Dynamically set the labels based on the length of the data
+                        labels: Array.from({ length: data.length }, (_, index) => `Load ${index + 1}`),
+                        datasets: [{
+                            label: 'Match Load',
+                            data: data,  // The data from Flask
+                            backgroundColor: 'rgba(46, 134, 193, 0.6)',
+                            borderColor: 'rgba(46, 134, 193, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+
+            let debounceTimer;
+        window.addEventListener("scroll", () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const footer = document.getElementById("pageFooter");
+                const { scrollY, innerHeight } = window;
+                const { scrollHeight } = document.documentElement;
+
+                const isAtBottom = scrollY + innerHeight >= scrollHeight - 10;
+                footer.style.opacity = isAtBottom ? "1" : "0";
+                footer.style.transform = isAtBottom ? "translateY(0)" : "translateY(100%)";
+                footer.style.pointerEvents = isAtBottom ? "auto" : "none";
+            }, 100);
+        });
+
+        // Trigger on page load
+        window.dispatchEvent(new Event("scroll"));
+    </script>
 </body>
 </html>

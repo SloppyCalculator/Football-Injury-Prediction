@@ -4,29 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitKick Pro - Dashboard</title>
+
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Oxanium:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
     <style>
+        /* Smooth Scrolling Behavior */
+        html{
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+        
+        /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #002244, #004d00);
+            background: url("{{ url_for('static', filename='Background2.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
             color: white;
             text-align: center;
-            padding-bottom: 80px; /* Space for footer */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         /* Header */
-        /* Header */
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between;  /* Keeps everything inside */
             align-items: center;
             background: rgba(0, 0, 0, 0.8);
             padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             width: 100%;
             box-sizing: border-box;
             position: fixed;
@@ -35,88 +68,192 @@
             z-index: 1000;
         }
 
-        .header-logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFD700;
+        .header-logo  {
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
             display: flex;
             align-items: center;
         }
 
-        .header-logo i {
-            margin-right: 10px;
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
         }
 
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .logo-text{
+            color: #087a8e;
+        }
+
+        /* Navigation Links */
         .nav-links {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            gap: 30px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 15px;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
             transition: color 0.3s;
+            white-space: nowrap; /* Prevents wrapping */
         }
 
         .nav-links a:hover {
-            color: #FFD700;
+            color: #087a8e;
+        }
+
+        /* Compact but Attractive User Greeting */
+        .user-greeting {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: rgba(8, 122, 142, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(8, 122, 142, 0.4);
+            padding: 16px 25px;
+            border-radius: 14px;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: 'Oxanium', sans-serif;
+            color: #ffffff;
+            max-width: 500px;
+            margin: 100px auto 30px 40px;
+            box-shadow: 0 0 10px rgba(8, 122, 142, 0.5), inset 0 0 3px rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+        }
+
+        .user-greeting::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            transform: skewX(-20deg);
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -75%; }
+            100% { left: 125%; }
+        }
+
+        .user-greeting:hover {
+            transform: translateX(6px) scale(1.02);
+            box-shadow: 0 0 20px rgba(8, 122, 142, 0.9), inset 0 0 8px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Slightly Smaller Icon */
+        .user-greeting i {
+            color: #00e1ff;
+            font-size: 26px;
+            margin-right: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        /* Username Styling */
+        .user-greeting span {
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 3px rgba(8, 122, 142, 0.7);
         }
 
         /* Main Container */
         .container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            padding: 120px 40px 20px;
+            gap: 70px;
+            padding: 120px 40px 150px;
             justify-content: center;
             align-items: center;
-            flex-grow: 1; /* This makes sure the container takes up available space */
+            flex-grow: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-top: -120px;
         }
 
         .button-box {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(71, 74, 76, 0.3); /* Set transparency */
+            backdrop-filter: blur(8px); /* Adds a glassmorphism effect */
             border-radius: 20px;
-            padding: 25px;
+            padding: 40px 25px;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
+            color: #003366;
+            min-height: 200px;
+            justify-content: center;
         }
 
         .button-box:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 25px rgba(8, 122, 142, 0.7);
         }
 
         .button-box i {
-            font-size: 50px;
-            color: #FFD700;
-            margin-bottom: 15px;
+            font-size: 60px;
+            color: #087a8e;
+            margin-bottom: 20px;
         }
 
         .button-box div {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
-            color: #FFD700;
+            color: #dee0e5;
+            font-family: 'Oxanium', sans-serif;
         }
 
         /* Footer */
         .footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
             width: 100%;
             text-align: center;
             position: fixed;
             bottom: 0;
             left: 0;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(100%);
+            pointer-events: none;
+            transition: all 0.4s ease-in-out;
+            z-index: 999;
         }
 
         .footer p {
@@ -126,31 +263,79 @@
         }
 
         .footer .social-icons a {
-            color: #FFD700;
-            font-size: 22px;
-            margin: 0 12px;
+            color: #087a8e;
+            font-size: 20px;
+            margin: 0 10px;
             transition: color 0.3s;
         }
 
         .footer .social-icons a:hover {
-            color: #FFA500;
+            color: #2fbfc4;
+        }
+
+        .logout-btn {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logout-btn:hover {
+            color: #FF6347; /* Tomato color for logout */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 100px 20px;
+            }
+            
+            .user-greeting {
+                margin: 100px auto 30px auto;
+                max-width: 90%;
+            }
+            
+            .button-box {
+                padding: 30px 15px;
+                min-height: 180px;
+            }
+            
+            .button-box i {
+                font-size: 50px;
+            }
+            
+            .button-box div {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <div class="header">
-        <div class="header-logo">
-            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
         </div>
         <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="{{ url_for('home') }}">Home</a>
+            
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                Logout
+            </a>
         </div>
     </div>
 
     <!-- Main Content -->
+    <div class="user-greeting">
+        <i class="fa fa-user-circle"></i>
+        <span>Hello, {{ username }}!</span> 
+    </div>
     <div class="container">
         <a href="/load" class="button-box">
             <i class="fa fa-line-chart"></i>
@@ -158,20 +343,20 @@
         </a>
         <a href="/injury" class="button-box">
             <i class="fa fa-heartbeat"></i>
-            <div>Analyze Match Readiness</div>
+            <div>Predict Injury Risk</div>
         </a>
         <a href="/performance" class="button-box">
             <i class="fa fa-bar-chart"></i>
             <div>Analyze Performance</div>
         </a>
-        <a href="/chatbot" class="button-box">
+        <a href="/chat" class="button-box">
             <i class="fa fa-comments"></i>
-            <div>Converse with the Chatbot</div>
+            <div>Ask the Chatbot</div>
         </a>
     </div>
 
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer" id="pageFooter">
         <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
         <div class="social-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -179,6 +364,26 @@
             <a href="#"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
+
+    <script>
+        // Debounced scroll handler for footer appearance
+        let debounceTimer;
+        window.addEventListener("scroll", () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const footer = document.getElementById("pageFooter");
+                const { scrollY, innerHeight } = window;
+                const { scrollHeight } = document.documentElement;
+
+                const isAtBottom = scrollY + innerHeight >= scrollHeight - 10;
+                footer.style.opacity = isAtBottom ? "1" : "0";
+                footer.style.transform = isAtBottom ? "translateY(0)" : "translateY(100%)";
+                footer.style.pointerEvents = isAtBottom ? "auto" : "none";
+            }, 100);
+        });
+
+        // Trigger on page load
+        window.dispatchEvent(new Event("scroll"));
+    </script>
 </body>
 </html>
-

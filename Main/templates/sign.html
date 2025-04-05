@@ -7,25 +7,60 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Oxanium:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 
     <style>
+        /* Smooth Scrolling Behavior */
+        html{
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #087a8e;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+        
         /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #003366, #007700);
+            background: linear-gradient(135deg, #2E86C1, #28B463);
+            background: url("{{ url_for('static', filename='Background2.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
             color: #ffffff;
             margin: 0;
             padding: 0;
             overflow: auto;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            max-width: 100%; 
         }
 
         /* Header */
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between;  /* Keeps everything inside */
             align-items: center;
             background: rgba(0, 0, 0, 0.8);
             padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             width: 100%;
             box-sizing: border-box;
             position: fixed;
@@ -34,37 +69,63 @@
             z-index: 1000;
         }
 
-        .header-logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFD700;
+        .header-logo  {
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
             display: flex;
             align-items: center;
         }
 
-        .header-logo i {
-            margin-right: 10px;
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+
+        .logo-text{
+            color: #087a8e;
+            
         }
 
         /* Navigation Links */
         .nav-links {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 25px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
             transition: color 0.3s;
-            white-space: nowrap;
+            white-space: nowrap; /* Prevents wrapping */
         }
 
         .nav-links a:hover {
-            color: #FFD700;
+            color: #087a8e;
         }
+
 
         /* Container */
         .container {
@@ -73,63 +134,97 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            min-height: 100vh;
-            padding: 20px;
-            margin-top: 80px;
-        }
-
-        /* Hero Image */
-        .hero-image {
-            width: 250px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            flex-grow: 1;
+            padding: 120px 20px 150px; /* Increased padding for more space */
+            margin-top: -30px; /* Prevents content from hiding under the fixed header */
         }
 
         /* Form Container */
         .form-container {
-            background-color: rgba(0, 0, 0, 0.7);
+            background: rgba(58, 61, 63, 0.6); /* Transparent dark background */
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 400px;
             text-align: center;
+            color: #dee0e5; /* Text color */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
         }
+
+        .signup{
+            font-family: 'Merriweather', serif;
+            font-size: 44px;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .sign-intro{
+            font-family: sans-serif;
+        }
+
+        /* Input Labels */
+        .input-label {
+            display: block;
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
 
         /* Input Fields */
         input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 12px;
-            background-color: #ffffff;
-            color: #000000;
+            width: 85%;
+            background: rgba(255, 255, 255, 0);
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-color: #087a8e;
+            border-radius: 6px;
+            padding: 15px 15px 15px 40px;
+            margin: 10px auto; /* centers horizontally */
+            display: block;     /* required for margin auto to work */
+            color: #fff;
             font-size: 16px;
+            outline: none;
         }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #3a3d3f inset !important;
+            -webkit-text-fill-color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
 
         /* Sign Up Button */
         .submit-button {
             font-size: 18px;
             font-weight: bold;
-            background-color: #FFD700;
-            color: #000000;
+            background-color: #087a8e;
+            color: #FFFFFF;
             border: none;
             border-radius: 12px;
             padding: 15px 40px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
         }
 
         .submit-button:hover {
-            background-color: #FFA500;
+            background-color: #2fbfc4;
             transform: scale(1.08);
         }
 
         .submit-button:active {
-            background-color: #FF8C00;
+            background-color: #2fbfc4;
             transform: scale(0.96);
         }
 
@@ -137,19 +232,24 @@
         .back-button {
             margin-top: 20px;
             font-size: 18px;
-            color: #FFD700;
-            background: none;
-            border: none;
+            color: #FFFFFF;
+            background: #0a6c6c;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
             text-decoration: none;
             display: inline-block;
-            padding: 10px 20px;
         }
 
+        /* Hover Effect */
         .back-button:hover {
-            color: #FFA500;
+            background: #249494; /* Lighter teal */
+            color: #ffffff;
+            transform: scale(1.05); /* Slight zoom effect */
         }
+
+      
 
         /* Footer */
         .footer {
@@ -157,9 +257,9 @@
             padding: 15px;
             width: 100%;
             text-align: center;
-            position: relative;
+            position: fixed;
             bottom: 0;
-            margin-top: 40px;
+            left: 0;
         }
 
         .footer p {
@@ -169,47 +269,48 @@
         }
 
         .footer .social-icons a {
-            color: #FFD700;
+            color: #087a8e;
             font-size: 20px;
             margin: 0 10px;
             transition: color 0.3s;
         }
 
         .footer .social-icons a:hover {
-            color: #FFA500;
+            color: #2fbfc4;
         }
-
     </style>
 </head>
 <body>
 
     <!-- Header -->
     <div class="header">
-        <div class="header-logo">
-            <i class="fa fa-soccer-ball-o"></i> FitKick Pro
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
         </div>
+        
         <div class="nav-links">
             <a href="{{ url_for('home') }}">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello</span> 
+            </div>
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Hero Image -->
-        <img src="{{ url_for('static', filename='homeImage.png') }}" alt="Football Player" class="hero-image">
-       
-        <!-- Sign Up Form -->
-        <h1>Sign Up to FitKick Pro</h1>
-        <p>Get started with our Football Injury Prediction System</p>
         
+        <!-- Sign Up Form -->
         <div class="form-container">
             <form action="{{ url_for('signup') }}" method="POST">
+                <h1 class="signup">Sign Up</h1>
+                <p class="sign-intro">Get started with our Football Injury Prediction System!</p>
                 <!-- Name Field -->
+                <label for="fullName" class="input-label">Full Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
                 
                 <!-- Password Field -->
+                <label for="password" class="input-label">Password</label>
                 <input type="password" id="password" name="password" placeholder="Password" required>
 
                 <!-- Submit Button -->
