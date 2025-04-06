@@ -1,6 +1,6 @@
-# ⚽️ Football Injury Prediction App Backend
+# ⚽️ Football Injury Prediction App
 
-This is the backend for an AI-powered football injury prediction application built with Flask. It provides workload prediction, performance analysis, match readiness estimation, and integrates a chatbot via Rasa to support player and coach interaction. Supabase is used for backend services such as authentication and data storage.
+This an AI-powered football injury prediction application built with Flask. It provides workload prediction, performance analysis, match readiness estimation, and integrates a chatbot via Rasa to support player and coach interaction. Supabase is used for backend services such as authentication and data storage.
 
 ## 🚀 Features
 
