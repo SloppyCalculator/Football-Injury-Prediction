@@ -173,7 +173,190 @@ nlu:
     - In what ways can appropriate football shoes prevent injuries?
     - Why is choosing the right football boots important for injury prevention?
 
+- intent: injury_risk
+  examples: |
+    - Is there a higher risk of injury when playing on artificial turf compared to natural grass?
+    - How does playing on artificial turf compare to natural grass in terms of injury risk?
+    - How does injury risk differ between artificial turf and natural grass surfaces?
+    - Are football players more likely to get injured on turf than on grass?
+    - What impact does playing on synthetic turf have on injury rates versus natural grass?
+
+- intent: groin_pull
+  examples: |
+    - What is a groin pull, and how does it affect football players?
+    - What is a groin strain, and how can it impact football players?
+    - How does a groin pull occur, and what effect does it have on athletes in football?
+    - Can you explain what a groin pull is and how it affects football players' performance?
+    - What happens during a groin injury, and why is it significant for football players?
+
+- intent:  weather_conditions
+  examples: |
+    - How do weather conditions affect the risk of football injuries?
+    - How does the weather influence injury risk in football?
+    - In what ways can weather conditions contribute to football injuries?
+    - How do different weather conditions impact football players' chances of getting injured?
+    - What role does the weather play in increasing or decreasing football injury risks?
+      
+- intent: CTE
+  examples: |
+    - What is CTE, and why is it a concern for football players?
+    - What is CTE, and how does it impact football players?
+    - Why is CTE a major issue in the world of football?
+    - Can you explain CTE and its significance in football?
+    - What makes CTE a concern for athletes who play football?
+  
+- intent: Help_prevent
+  examples: |
+    - How can preseason training help prevent football injuries?
+    - In what ways does preseason training reduce the risk of football injuries?
+    - How does proper preseason preparation help football players avoid injuries?
+    - Why is preseason training important for injury prevention in football?
+    - How can training before the season starts protect football players from injuries?
+  
+- intent: Children_Youth
+  examples: |
+    - Are children and youth footballers at the same risk of injuries as adults?
+    - Do children and youth football players face the same injury risks as adults?
+    - Are young footballers as likely to get injured as adult players?
+    - How does injury risk in youth football compare to that in adult football?
+    - Are kids and teens who play football exposed to the same injury dangers as grown players?
+
+- intent: Psychological_effects
+  examples: |
+    - What are the psychological effects of a long-term football injury?
+    - How can a long-term football injury affect a player's mental health?
+    - What are the emotional and psychological impacts of being sidelined by a football injury?
+    - In what ways does a serious football injury affect a player's mindset?
+    - How do long-term injuries influence the mental well-being of football players?
 
 
+- intent: Hydration
+  examples: |
+    - How important is hydration in preventing football injuries?
+    - What role does hydration play in reducing the risk of football injuries?
+    - How does staying hydrated help prevent injuries in football players?
+    - Why is proper hydration critical for injury prevention in football?
+    - Can dehydration increase the chances of getting injured during football?
+
+- intent: Goalkeepers_injuries
+  examples: |
+    - Do goalkeepers face different types of injuries than outfield players?
+    - Are the injuries goalkeepers sustain different from those of outfield players?
+    - Do goalkeepers experience unique injury risks compared to other football players?
+    - How do the types of injuries goalkeepers face differ from those of outfield players?
+    - What kinds of injuries are more common in goalkeepers than in field players?
+
+- intent: Ankle_Sprain
+  examples: |
+    - What is a high ankle sprain, and how is it different from a regular ankle sprain?
+    - What is the difference between a high ankle sprain and a regular ankle sprain?
+    - How does a high ankle sprain differ from a typical ankle sprain?
+    - What exactly is a high ankle sprain, and how is it unique?
+    - In what ways is a high ankle sprain more serious than a standard ankle sprain?
+
+- intent: Warm_up
+  examples: |
+    - Can improper warm-up lead to football injuries?
+    - Can skipping a proper warm-up increase the risk of football injuries?
+    - How does an inadequate warm-up contribute to injuries in football?
+    - Is there a link between poor warm-up routines and football-related injuries?
+    - Why is warming up properly important for injury prevention in football?
+
+
+- intent: overtraining
+  examples: |
+    - How does overtraining affect injury risk in football?
+    - Can overtraining increase the likelihood of injuries in football players?
+    - What impact does overtraining have on injury risk in football?
+    - How does training too much put football players at greater risk of injury?
+    - Is there a connection between overtraining and football-related injuries?
+
+
+- intent: nutrition
+  examples: |
+    - What role does nutrition play in football injury prevention and recovery?
+    - How does nutrition help prevent and recover from football injuries?
+    - What impact does diet have on injury prevention and healing in football players?
+    - How important is proper nutrition in reducing football injury risk and speeding up recovery?
+    - In what ways does good nutrition support football injury prevention and rehabilitation?
+
+- intent: immediate_treatment
+  examples: |
+    - What is the best immediate treatment for acute football injuries?
+    - What is the most effective immediate treatment for sudden football injuries?
+    - How should acute injuries in football be treated right after they happen?
+    - What is the recommended first response for a football player with an acute injury?
+    - What steps should be taken immediately after a football injury occurs?
+   
+- intent: technology
+  examples: |
+    - How can technology help in preventing football injuries?
+    - In what ways can technology aid in preventing injuries in football?
+    - How does modern tech help reduce the risk of football injuries?
+    - What role does technology play in football injury prevention?
+    - Can wearable tech and data analysis help keep football players injury-free?
 
    
+- intent: direct_head
+  examples: |
+    - Are concussions always caused by direct head contact?
+    - Do concussions only occur from direct hits to the head?
+    - Can concussions happen without a blow to the head?
+    - Is direct contact to the head the only cause of concussions?
+    - Are all concussions the result of a hit to the head?
+
+- intent:  patellar_tendinitis
+  examples: |
+    - What is patellar tendinitis, and how does it affect footballers?
+    - What is patellar tendinitis, and how does it impact football players?
+    - How does patellar tendinitis affect a footballer’s performance and mobility?
+    - What causes patellar tendinitis, and why is it a concern for footballers?
+    - Can you explain patellar tendinitis and its effects on athletes in football?
+
+- intent:  hamstring_strain
+  examples: |
+    - How long does it take to recover from a hamstring strain?
+    - What is the typical recovery time for a hamstring strain?
+    - How long does it usually take a football player to heal from a hamstring strain?
+    - What’s the average healing period for a hamstring injury?
+    - How much time off is needed to recover from a strained hamstring?
+
+- intent:  turf_toe
+  examples: |
+    - What is turf toe and how does it occur in football players?
+    - What is turf toe, and why is it common in football players?
+    - How does turf toe happen, and how does it affect football athletes?
+    - Can you explain what turf toe is and how it occurs during football?
+    - What causes turf toe in football players, and what are the symptoms?
+
+- intent:  biomechanics
+  examples: |
+    - What is the role of biomechanics in football injuries?
+    - How does biomechanics influence the risk of football injuries?
+    - What role does biomechanics play in understanding and preventing football injuries?
+    - How can biomechanical analysis help reduce injuries in football?
+    - Why is biomechanics important in identifying injury risks for football players?
+
+- intent:  strain_sprain
+  examples: |
+    - What is the difference between a strain and a sprain?
+    - How do strains and sprains differ from each other?
+    - What’s the key difference between a strain and a sprain?
+    - Are strains and sprains the same thing, or do they affect different tissues?
+    - What’s the distinction between a muscle strain and a ligament sprain?
+
+- intent:  groin_injuries
+  examples: |
+    - How common are groin injuries in football, and what causes them?
+    - How frequent are groin injuries in football, and what typically causes them?
+    - Are groin injuries common in football, and what are the main reasons behind them?
+    - What causes groin injuries in football, and how often do they occur?
+    - How likely are football players to suffer from groin injuries, and why?
+
+- intent:  footware_injuries
+  examples: |
+    - Can footwear impact the likelihood of injuries on the pitch?
+    - Does the type of footwear a player wears affect their risk of injury on the pitch?
+    - How can football boots influence the chances of getting injured during a game?
+    - Is there a link between footwear and injury risk in football?
+    - Can wearing the wrong boots increase the likelihood of injuries on the field?

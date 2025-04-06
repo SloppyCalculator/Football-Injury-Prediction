@@ -79,7 +79,118 @@ stories:
     - intent: proper_footwear
     - action: utter_proper_footwear
 
+- story: injury risk
+  steps:
+    - intent: injury_risk
+    - action: utter_injury_risk
+
+- story: groin pull
+  steps: 
+   - intent: groin_pull
+   - action: utter_groin_pull
+
+- story: weather conditions
+  steps: 
+   - intent: weather_conditions
+   - action: utter_weather_conditions
+
+- story: CTE injury
+  steps:
+   - intent: CTE
+   - action: utter_CTE
+
+- story: Help prevent
+  steps:
+   - intent: Help_prevent
+   - action: utter_Help_prevent
+
+- story: Children youth
+  steps:
+   - intent: Children_Youth
+   - action: utter_Children_Youth  
+
+- story: Psychological effects
+  steps:
+   - intent: Psychological_effects
+   - action: utter_Psychological_effects 
+
+- story: Hydration football
+  steps:
+   - intent: Hydration
+   - action: utter_Hydration
+   
+- story: Goalkeepers injuries
+  steps:
+   - intent: Goalkeepers_injuries
+   - action: utter_Goalkeepers_injuries
+
+- story: Ankle Sprain
+  steps:
+   - intent: Ankle_Sprain
+   - action: utter_Ankle_Sprain
+
+- story: Warm up
+  steps:
+   - intent: Warm_up
+   - action: utter_Warm_up
+
+- story: overtraining football
+  steps:
+   - intent: overtraining
+   - action: utter_overtraining
+
+- story: nutrition football
+  steps:
+   - intent: nutrition
+   - action: utter_nutrition
+
+- story: immediate treatment
+  steps:
+   - intent: immediate_treatment
+   - action: utter_immediate_treatment
+
+- story: technology football
+  steps:
+   - intent: technology
+   - action: utter_technology
+
+- story: direct head
+  steps:
+   - intent: direct_head
+   - action: utter_direct_head
+
+- story: patellar tendinitis
+  steps:
+   - intent: patellar_tendinitis
+   - action: utter_patellar_tendinitis
 
 
+- story: hamstring strain
+  steps:
+   - intent: hamstring_strain
+   - action: utter_hamstring_strain
 
+- story: turf toe
+  steps:
+   - intent: turf_toe
+   - action: utter_turf_toe
 
+- story: biomechanics football
+  steps:
+   - intent: biomechanics
+   - action: utter_biomechanics
+
+- story: strain sprain
+  steps:
+   - intent: strain_sprain
+   - action: utter_strain_sprain
+
+- story: groin injuries
+  steps:
+   - intent: groin_injuries
+   - action: utter_groin_injuries
+
+- story: footware injuries
+  steps:
+   - intent: footware_injuries
+   - action: utter_footware_injuries
