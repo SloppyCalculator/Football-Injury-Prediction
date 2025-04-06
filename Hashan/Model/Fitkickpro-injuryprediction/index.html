@@ -17,29 +17,40 @@
 
         /* Custom Properties */
         :root {
-            --primary: #00ff95;
-            --primary-dark: #00cc78;
+            --primary: #087a8e;
+            --primary-dark: #008bcc;
             --bg-dark: #0a0a0a;
             --bg-card: #1a1a1a;
             --text-primary: #ffffff;
             --text-secondary: #a0a0a0;
             --error: #ff4545;
-            --success: #00ff95;
+            --success: #087a8e;
             --warning: #ffbe0b;
             --input-bg: rgba(255, 255, 255, 0.05);
             --input-border: rgba(255, 255, 255, 0.1);
         }
 
-        /* Scrollbar Styling */
+        
+
+        /* Custom Scroll Bar */
         ::-webkit-scrollbar {
             width: 8px;
-            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
+            background: #087a8e;
         }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #087a8e;
+        }
+
+
+
 
         /* General Page Styling */
         body {
@@ -58,6 +69,11 @@
             background-position: center; /* Centers the image */
         }
 
+
+
+        
+
+
         /* Centered Form Container */
         .container {
             background: var(--bg-card);
@@ -70,7 +86,12 @@
             border: 1px solid var(--input-border);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             animation: fadeIn 0.6s ease-out;
+            /* padding-bottom: 80px; Space for footer */
+            margin-top: 100px;   /* space below header */
+            margin-bottom: 100px; /* space above footer */
+
         }
+        
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -342,13 +363,158 @@
                 padding: 0.875rem;
             }
         }
+
+
+
+
+
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;  /* Keeps everything inside */
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo  {
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #087a8e 50%, #ffffff 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 10s linear infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+
+        .logo-text{
+            color: #087a8e;
+            
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 25px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap; /* Prevents wrapping */
+        }
+
+        .nav-links a:hover {
+            color: #087a8e;
+        }
+
+
+
+
+        
+
+
+        /*Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(100%);
+            pointer-events: none;
+            transition: all 0.4s ease-in-out;
+            z-index: 999;
+        }
+
+
+
+        
+
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .footer .social-icons a {
+            color: #087a8e;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #2fbfc4;
+        }
+
+
+
+
+
+        
     </style>
 </head>
 
 <body>
 
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo shimmer-text">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
+        </div>
+        
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello, {{ username }}</span> 
+            </div>
+        </div>
+    </div>
+
+
     <div class="container">
-        <h2 id="formHeading">... Injury Scope ...</h2>
+        <h2 id="formHeading">Injury Scope </h2>
         <h3 id="formSubHeading">Step ahead of injuries</h3>
 
 
@@ -417,6 +583,16 @@
                     100%
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="pageFooter">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
 
@@ -510,15 +686,15 @@
                 let healthStatus = result.health_status || "Error retrieving status";
                 let healthPercentage = result.health_percentage || 0;
 
-                // ✅ Keep the form visible (Fix disappearing issue)
+                // Keep the form visible (Fix disappearing issue)
                 document.getElementById("injuryForm").style.display = "block";
 
-                // ✅ Display the prediction result
+                // Display the prediction result
                 let predictionResult = document.getElementById("predictionResult");
                 predictionResult.innerText = healthStatus;
                 predictionResult.style.display = "block"; // Make sure it is visible
 
-                // ✅ Move progress bar below the result
+                //  Move progress bar below the result
                 let progressContainer = document.getElementById("progressContainer");
                 let progressBar = document.getElementById("healthProgressBar");
 
@@ -547,6 +723,30 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("injuryForm").addEventListener("submit", submitForm);
         });
+
+
+             /*footer trans*/
+        window.addEventListener("scroll", () => {
+            const footer = document.getElementById("pageFooter");
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            if (scrollY + windowHeight >= docHeight - 10) {
+                footer.style.opacity = "1";
+                footer.style.transform = "translateY(0)";
+                footer.style.pointerEvents = "auto";
+            } else {
+                footer.style.opacity = "0";
+                footer.style.transform = "translateY(100%)";
+                footer.style.pointerEvents = "none";
+            }
+        });
+
+        
+
+        
+
     </script>
 
 </body>

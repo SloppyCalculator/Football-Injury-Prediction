@@ -44,15 +44,24 @@
         /* General Page Styling */
         body {
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
+            /* background: var(--bg-dark); */
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            justify-content: right;
             align-items: center;
             padding: 2rem;
             color: var(--text-primary);
             line-height: 1.6;
+            background-image: url('bg2.jpg');
+            background-size: cover; /* Adjusts the image to cover the whole area */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image */
         }
+
+
+
+        
+
 
         /* Centered Form Container */
         .container {
@@ -60,6 +69,7 @@
             padding: 3rem;
             border-radius: 24px;
             width: 100%;
+            background:transparent; 
             max-width: 520px;
             backdrop-filter: blur(10px);
             border: 1px solid var(--input-border);
@@ -74,7 +84,7 @@
 
         /* Heading Styling */
         h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 2rem;
             text-align: center;
@@ -84,6 +94,9 @@
             -webkit-text-fill-color: transparent;
             animation: slideDown 0.5s ease-out;
         }
+
+       
+
 
         @keyframes slideDown {
             from { opacity: 0; transform: translateY(-20px); }
@@ -111,8 +124,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+
+
         /* Labels */
         label {
+            margin-top: 15px;;
             font-weight: 500;
             display: block;
             margin-bottom: 0.75rem;
@@ -257,6 +273,20 @@
             position: relative;
         }
 
+        #formSubHeading {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: -1.25rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: -0.3px;
+            background: linear-gradient(to right, var(--text-secondary), #eff8f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideDown 0.5s ease-out;
+        }
+
+
         #healthProgressBar {
             height: 100%;
             background: var(--primary);
@@ -317,86 +347,216 @@
                 padding: 0.875rem;
             }
         }
+
+
+
+
+
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;  /* Keeps everything inside */
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-logo  {
+            margin-right: 10px;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Ubuntu", sans-serif;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text{
+            color: #087a8e;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 25px; /* Space between links */
+            flex-wrap: wrap; /* Prevents overflowing */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: "Oxanium", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap; /* Prevents wrapping */
+        }
+
+        .nav-links a:hover {
+            color: #087a8e;
+        }
+
+
+
+
+        
+
+
+        /*Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+           
+            
+            bottom: 0;
+            left: 0; 
+        }  
+
+
+        
+
+
+        .footer p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .footer .social-icons a {
+            color: #087a8e;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #2fbfc4;
+        }
+
+
+
+
+
+        
     </style>
 </head>
+
 <body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo">
+            <span class="logo-text">F</span>it <span class="logo-text">K</span>ick&nbsp;<span class="logo-text"> P</span>ro
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <div class="user-greeting">
+                <i class="fa fa-user-circle"></i>
+                <span>Hello, {{ username }}</span> 
+            </div>
+        </div>
+    </div>
+
+
     <div class="container">
-        <h2 id="formHeading">Injury Prediction Form</h2>
+        <h2 id="formHeading">Injury Scope </h2>
+        <h3 id="formSubHeading">Step ahead of injuries</h3>
+
 
         <form id="injuryForm">
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" min="10" max="100" required>
-                <div class="error" id="ageError">Age must be between 10 and 100.</div>
-            </div>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="10" max="100" required>
+            <div class="error" id="ageError">Age must be between 10 and 100.</div>
 
-            <div class="form-group">
-                <label for="height">Height (cm)</label>
-                <input type="number" id="height" name="height" min="50" max="250" required>
-                <div class="error" id="heightError">Height must be between 50 cm and 250 cm.</div>
-            </div>
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" name="height" min="50" max="250" required>
+            <div class="error" id="heightError">Height must be between 50 cm and 250 cm.</div>
 
-            <div class="form-group">
-                <label for="weight">Weight (kg)</label>
-                <input type="number" id="weight" name="weight" min="20" max="200" required>
-                <div class="error" id="weightError">Weight must be between 20 kg and 200 kg.</div>
-            </div>
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" name="weight" min="20" max="200" required>
+            <div class="error" id="weightError">Weight must be between 20 kg and 200 kg.</div>
 
-            <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-                <div class="error" id="genderError">Please select a gender.</div>
-            </div>
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <div class="error" id="genderError">Please select a gender.</div>
 
-            <div class="form-group">
-                <label for="dominantLeg">Dominant Leg</label>
-                <select id="dominantLeg" name="dominantLeg" required>
-                    <option value="">Select</option>
-                    <option value="Left">Left</option>
-                    <option value="Right">Right</option>
-                </select>
-                <div class="error" id="legError">Please select a dominant leg.</div>
-            </div>
+            <label for="dominantLeg">Dominant Leg</label>
+            <select id="dominantLeg" name="dominantLeg" required>
+                <option value="">Select</option>
+                <option value="Left">Left</option>
+                <option value="Right">Right</option>
+            </select>
+            <div class="error" id="legError">Please select a dominant leg.</div>
 
-            <div class="form-group">
-                <label for="walkingSpeed">Walking Speed (m/s)</label>
-                <input type="number" id="walkingSpeed" name="walkingSpeed" step="0.01" min="0.1" max="10" required>
-                <div class="error" id="speedError">Walking speed must be between 0.1 and 10 m/s.</div>
-            </div>
+            <label for="walkingSpeed">Walking Speed (m/s)</label>
+            <input type="number" id="walkingSpeed" name="walkingSpeed" step="0.01" min="0.1" max="10" required>
+            <div class="error" id="speedError">Walking speed must be between 0.1 and 10 m/s.</div>
 
-            <div class="form-group">
-                <label for="yearsRunning">Years Running</label>
-                <input type="number" id="yearsRunning" name="yearsRunning" min="0" max="80" required>
-                <div class="error" id="runningError">Years running must be at least 0.</div>
-            </div>
+            <label for="yearsRunning">Years Running</label>
+            <input type="number" id="yearsRunning" name="yearsRunning" min="0" max="80" required>
+            <div class="error" id="runningError">Years running must be at least 0.</div>
 
-            <div class="form-group">
-                <label for="trainingLevel">Training Level</label>
-                <select id="trainingLevel" name="trainingLevel" required>
-                    <option value="">Select Level</option>
-                    <option value="Recreational">Recreational</option>
-                    <option value="Professional">Professional</option>
-                </select>
-                <div class="error" id="levelError">Please select a training level.</div>
-            </div>
+            <label for="trainingLevel">Training Level</label>
+            <select id="trainingLevel" name="trainingLevel" required>
+                <option value="">Select Level</option>
+                <option value="Recreational">Recreational</option>
+                <option value="Professional">Professional</option>
+            </select>
+            <div class="error" id="levelError">Please select a training level.</div>
 
             <button type="submit">Predict Injury Risk</button>
         </form>
 
-        <div id="predictionResult"></div>
+        <h3 id="predictionResult"></h3>
 
-        <div id="progressContainer">
-            <label for="healthProgress">Player Health Status</label>
-            <div class="progress-bg">
-                <div id="healthProgressBar"></div>
+        <div id="progressContainer" style="display: none; text-align: left; margin-top: 15px;">
+            <label for="healthProgress">Player Health (%)</label>
+            <div style="position: relative; height: 25px; background: #ccc; border-radius: 5px;">
+                <div id="healthProgressBar" style="
+                    width: 0%;
+                    height: 100%;
+                    background-color: green;
+                    border-radius: 5px;
+                    text-align: center;
+                    color: white;
+                    font-weight: bold;
+                    line-height: 25px;">
+                    100%
+                </div>
             </div>
-            <div id="healthStatus"></div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <div class="footer" id="pageFooter">
+        <p>&copy; 2025 FitKick Pro. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+
+ 
+
 
     <script>
         function validateForm() {
@@ -405,29 +565,36 @@
             function validateNumber(id, min, max) {
                 let inputElement = document.getElementById(id);
                 let errorElement = document.getElementById(id + "Error");
+
+                if (!inputElement || !errorElement) {
+                    console.error(`Element '${id}' or '${id}Error' not found.`);
+                    return;
+                }
+
                 let value = parseFloat(inputElement.value);
 
                 if (isNaN(value) || value < min || value > max) {
                     errorElement.style.display = "block";
-                    inputElement.style.borderColor = "var(--error)";
                     isValid = false;
                 } else {
                     errorElement.style.display = "none";
-                    inputElement.style.borderColor = "var(--input-border)";
                 }
             }
 
             function validateDropdown(id) {
-                let element = document.getElementById(id);
+                let value = document.getElementById(id).value;
                 let errorElement = document.getElementById(id + "Error");
-               
-                if (element.value === "") {
+
+                if (!errorElement) {
+                    console.error(`Error element for '${id}' not found.`);
+                    return;
+                }
+
+                if (value === "") {
                     errorElement.style.display = "block";
-                    element.style.borderColor = "var(--error)";
                     isValid = false;
                 } else {
                     errorElement.style.display = "none";
-                    element.style.borderColor = "var(--input-border)";
                 }
             }
 
@@ -445,11 +612,13 @@
 
         async function submitForm(event) {
             event.preventDefault();
-           
+            
             if (!validateForm()) {
+                console.error("Form validation failed.");
                 return;
             }
-
+            console.log("Ensuring h2 is visible");
+            document.getElementById("formHeading").style.display = "block"; 
             let formData = {
                 walkingSpeed: parseFloat(document.getElementById("walkingSpeed").value),
                 age: parseFloat(document.getElementById("age").value),
@@ -476,56 +645,49 @@
                 let healthStatus = result.health_status || "Error retrieving status";
                 let healthPercentage = result.health_percentage || 0;
 
+                // Keep the form visible (Fix disappearing issue)
+                document.getElementById("injuryForm").style.display = "block";
+
+                // Display the prediction result
                 let predictionResult = document.getElementById("predictionResult");
                 predictionResult.innerText = healthStatus;
-                predictionResult.style.display = "block";
+                predictionResult.style.display = "block"; // Make sure it is visible
 
+                //  Move progress bar below the result
                 let progressContainer = document.getElementById("progressContainer");
                 let progressBar = document.getElementById("healthProgressBar");
-                let healthStatusElement = document.getElementById("healthStatus");
 
-                progressContainer.style.display = "block";
+                progressContainer.style.display = "block"; // Show the progress bar
                 progressBar.style.width = healthPercentage + "%";
-                healthStatusElement.innerText = `${healthPercentage}% Health`;
+                progressBar.innerText = healthPercentage + "%";
 
-                // Dynamic color based on health percentage
+                // Adjust progress bar color dynamically
                 if (healthPercentage > 70) {
-                    progressBar.style.background = "var(--success)";
-                    healthStatusElement.style.color = "var(--success)";
+                    progressBar.style.background = "linear-gradient(135deg, #28a745, #218838)"; // Green
                 } else if (healthPercentage > 40) {
-                    progressBar.style.background = "var(--warning)";
-                    healthStatusElement.style.color = "var(--warning)";
+                    progressBar.style.background = "linear-gradient(135deg, #ffc107, #ff9800)"; // Orange
                 } else {
-                    progressBar.style.background = "var(--error)";
-                    healthStatusElement.style.color = "var(--error)";
+                    progressBar.style.background = "linear-gradient(135deg, #dc3545, #c82333)"; // Red
                 }
 
             } catch (error) {
                 console.error("Fetch Error:", error);
-                let predictionResult = document.getElementById("predictionResult");
-                predictionResult.innerText = "Error: Failed to connect to API";
-                predictionResult.style.display = "block";
+                document.getElementById("predictionResult").innerText = "Error: Failed to connect to API";
             }
         }
 
-        // Add input event listeners for real-time validation
-        document.addEventListener("DOMContentLoaded", function() {
-            const form = document.getElementById("injuryForm");
-            const inputs = form.querySelectorAll("input, select");
+       
 
-            inputs.forEach(input => {
-                input.addEventListener("input", function() {
-                    this.style.borderColor = "var(--input-border)";
-                    const errorElement = document.getElementById(this.id + "Error");
-                    if (errorElement) {
-                        errorElement.style.display = "none";
-                    }
-                });
-            });
 
-            form.addEventListener("submit", submitForm);
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("injuryForm").addEventListener("submit", submitForm);
         });
+
+        
+
+        
+
     </script>
+
 </body>
 </html>
-
