@@ -126,7 +126,7 @@ Activate your Rasa environment:
 ```bash
 source rasa_env/bin/activate      # Windows: rasa_env\Scripts\activate
 ```
-First train using uploaded rasa files as created model is too large to be included or download the trained model from following link https://drive.google.com/drive/folders/10yiVCCl34WwmKhP-OuhWNjQoFnYGqSFk?usp=drive_link
+First train using uploaded rasa files as created model is too large to be included or download the trained model from following link and add it into the rasa folder https://drive.google.com/drive/folders/10yiVCCl34WwmKhP-OuhWNjQoFnYGqSFk?usp=drive_link
 
 ```bash
 rasa train
