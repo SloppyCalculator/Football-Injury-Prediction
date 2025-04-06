@@ -18,6 +18,15 @@ intents:
   - Impact_concussion
   - About_hamstring
   - proper_footwear
+  - injury_risk
+  - groin_pull
+  - weather_conditions
+  - CTE
+  - Help_prevent
+  - Children_Youth
+  - Psychological_effects
+  - Hydration
+  - Goalkeepers_injuries
  
  
 
@@ -81,6 +90,47 @@ responses:
   utter_proper_footwear:
     - text: |
         Wearing appropriate footwear provides necessary support and traction, reducing the risk of injuries like sprains and strains. For female players, boots designed to accommodate anatomical differences can help prevent injuries such as ACL tears. 
+
+  utter_injury_risk:
+    - text: |
+        Some studies suggest that playing on artificial turf may increase the risk of certain injuries, such as ACL tears, due to differences in surface stiffness and traction. However, findings are mixed, and ongoing research continues to investigate this issue.
+
+  utter_groin_pull:
+    - text: |
+        A groin pull occurs when the muscles in the inner thigh are stretched or torn. It can lead to pain, limited mobility, and time away from play. Footballers are especially prone due to frequent directional changes and kicking.
+
+  utter_weather_conditions:
+    - text: |
+        Wet or icy conditions can increase the risk of slips, falls, and muscle strains. Dry, hard surfaces may lead to impact-related injuries. Proper footwear and ground maintenance are key to injury prevention.
+
+  utter_CTE:
+    - text: |
+        CTE (Chronic Traumatic Encephalopathy) is a degenerative brain disease linked to repeated head impacts. It's a concern due to long-term effects like memory loss, depression, and behavioral changes in athletes with multiple concussions.
+
+  utter_Help_prevent:
+    - text: |
+        Preseason programs focusing on strength, agility, and flexibility can prepare the body for intense gameplay, lowering the risk of injury. Emphasizing proper technique and conditioning is crucial.
+
+  utter_Children_Youth:
+    - text: |
+        While children may have lower-impact collisions, their growing bodies are more susceptible to overuse injuries. Proper coaching, training, and recovery are vital to safeguard young athletes.
+
+  utter_Psychological_effects:
+    - text: |
+        Injured players may experience anxiety, depression, or a loss of identity. Mental health support and involvement in team activities during recovery can help maintain well-being.
+
+  utter_Hydration:
+    - text: |
+        Dehydration can lead to muscle cramps, fatigue, and decreased performance, increasing injury risk. Staying well-hydrated is essential, especially in hot weather or intense matches.
+
+  utter_Goalkeepers_injuries:
+    - text: |
+        Yes, goalkeepers often experience upper body injuries like shoulder dislocations or finger fractures due to diving and catching. They also face knee injuries from repeated jumping and landings.
+
+
+
+
+
 
 
 

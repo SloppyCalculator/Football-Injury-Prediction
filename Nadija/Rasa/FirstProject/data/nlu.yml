@@ -173,7 +173,75 @@ nlu:
     - In what ways can appropriate football shoes prevent injuries?
     - Why is choosing the right football boots important for injury prevention?
 
+- intent: injury_risk
+  examples: |
+    - Is there a higher risk of injury when playing on artificial turf compared to natural grass?
+    - How does playing on artificial turf compare to natural grass in terms of injury risk?
+    - How does injury risk differ between artificial turf and natural grass surfaces?
+    - Are football players more likely to get injured on turf than on grass?
+    - What impact does playing on synthetic turf have on injury rates versus natural grass?
+
+- intent: groin_pull
+  examples: |
+    - What is a groin pull, and how does it affect football players?
+    - What is a groin strain, and how can it impact football players?
+    - How does a groin pull occur, and what effect does it have on athletes in football?
+    - Can you explain what a groin pull is and how it affects football players' performance?
+    - What happens during a groin injury, and why is it significant for football players?
+
+- intent:  weather_conditions
+  examples: |
+    - How do weather conditions affect the risk of football injuries?
+    - How does the weather influence injury risk in football?
+    - In what ways can weather conditions contribute to football injuries?
+    - How do different weather conditions impact football players' chances of getting injured?
+    - What role does the weather play in increasing or decreasing football injury risks?
+      
+- intent: CTE
+  examples: |
+    - What is CTE, and why is it a concern for football players?
+    - What is CTE, and how does it impact football players?
+    - Why is CTE a major issue in the world of football?
+    - Can you explain CTE and its significance in football?
+    - What makes CTE a concern for athletes who play football?
+  
+- intent: Help_prevent
+  examples: |
+    - How can preseason training help prevent football injuries?
+    - In what ways does preseason training reduce the risk of football injuries?
+    - How does proper preseason preparation help football players avoid injuries?
+    - Why is preseason training important for injury prevention in football?
+    - How can training before the season starts protect football players from injuries?
+  
+- intent: Children_Youth
+  examples: |
+    - Are children and youth footballers at the same risk of injuries as adults?
+    - Do children and youth football players face the same injury risks as adults?
+    - Are young footballers as likely to get injured as adult players?
+    - How does injury risk in youth football compare to that in adult football?
+    - Are kids and teens who play football exposed to the same injury dangers as grown players?
+
+- intent: Psychological_effects
+  examples: |
+    - What are the psychological effects of a long-term football injury?
+    - How can a long-term football injury affect a player's mental health?
+    - What are the emotional and psychological impacts of being sidelined by a football injury?
+    - In what ways does a serious football injury affect a player's mindset?
+    - How do long-term injuries influence the mental well-being of football players?
 
 
+- intent: Hydration
+  examples: |
+    - How important is hydration in preventing football injuries?
+    - What role does hydration play in reducing the risk of football injuries?
+    - How does staying hydrated help prevent injuries in football players?
+    - Why is proper hydration critical for injury prevention in football?
+    - Can dehydration increase the chances of getting injured during football?
 
-   
+- intent: Goalkeepers_injuries
+  examples: |
+    - Do goalkeepers face different types of injuries than outfield players?
+    - Are the injuries goalkeepers sustain different from those of outfield players?
+    - Do goalkeepers experience unique injury risks compared to other football players?
+    - How do the types of injuries goalkeepers face differ from those of outfield players?
+    - What kinds of injuries are more common in goalkeepers than in field players?
