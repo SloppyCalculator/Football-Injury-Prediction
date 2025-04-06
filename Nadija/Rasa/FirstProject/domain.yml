@@ -27,6 +27,20 @@ intents:
   - Psychological_effects
   - Hydration
   - Goalkeepers_injuries
+  - Ankle_Sprain
+  - Warm_up
+  - overtraining
+  - nutrition
+  - immediate_treatment
+  - technology
+  - direct_head
+  - patellar_tendinitis
+  - hamstring_strain
+  - turf_toe
+  - biomechanics
+  - strain_sprain
+  - groin_injuries
+  - footware_injuries
  
  
 
@@ -127,13 +141,64 @@ responses:
     - text: |
         Yes, goalkeepers often experience upper body injuries like shoulder dislocations or finger fractures due to diving and catching. They also face knee injuries from repeated jumping and landings.
 
+  utter_Ankle_Sprain:
+    - text: |
+        A high ankle sprain affects the ligaments above the ankle joint and is usually more severe than a regular ankle sprain. It often occurs due to twisting or rotational forces during tackles or sudden movements.
+
+  utter_Warm_up:
+    - text: |
+        Yes. Skipping warm-ups can leave muscles tight and unprepared for sudden movements, increasing the likelihood of strains, sprains, and muscle tears.
+
+  utter_overtraining:
+    - text: |
+        Overtraining without sufficient rest can lead to fatigue, reduced coordination, and overuse injuries such as tendonitis or stress fractures. Recovery periods are essential for injury prevention.
 
 
 
+  utter_nutrition:
+    - text: |
+        Proper nutrition supports muscle repair, energy levels, and immune function. Protein helps repair tissues, while carbohydrates fuel performance. Calcium and vitamin D are important for bone health.
+
+  utter_immediate_treatment:
+    - text: |
+        The R.I.C.E. method—Rest, Ice, Compression, and Elevation—is commonly used to manage acute injuries like sprains or strains within the first 48 hours.
+
+  utter_technology:
+    - text: |
+        Wearable devices can monitor workload, heart rate, and movement patterns to identify fatigue or improper biomechanics, helping coaches adjust training and reduce injury risks.
+
+  utter_direct_head:
+    - text: |
+        No. Concussions can also occur from whiplash-like movements or impacts to the body that cause the brain to shake inside the skull, even without a head-to-head collision.
+
+  utter_patellar_tendinitis:
+    - text: |
+        Also called "jumper’s knee," it’s an overuse injury affecting the tendon connecting the kneecap to the shinbone. It causes pain and limits jumping or sprinting ability.
+
+  utter_hamstring_strain:
+    - text: |
+        Recovery depends on severity. Mild strains may heal in 1–2 weeks, while severe tears can take 6–8 weeks or longer. Proper rehab and avoiding early return are key to full recovery.
+
+  utter_turf_toe:
+    - text: |
+        Turf toe is a sprain of the big toe joint caused by excessive upward bending of the toe. It often occurs on artificial turf due to the increased grip, which prevents the foot from sliding.
+
+  utter_biomechanics:
+    - text: |
+        Poor biomechanics (e.g., faulty running or landing technique) can overload joints and muscles, leading to chronic injuries. Motion analysis can help correct these patterns.
 
 
+  utter_strain_sprain:
+    - text: |
+        A strain is an injury to a muscle or tendon, while a sprain affects ligaments. Both can range from mild (stretching) to severe (tears).
 
+  utter_groin_injuries:
+    - text: |
+        Groin injuries are common due to the demands of kicking, cutting, and twisting. Weakness, tightness, or muscle imbalances in the adductors can contribute.
 
+  utter_footware_injuries:
+    - text: |
+        Absolutely. Wearing improper or worn-out boots can affect traction, support, and biomechanics, contributing to both acute and overuse injuries.
 
 
 

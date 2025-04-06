@@ -124,4 +124,73 @@ stories:
    - intent: Goalkeepers_injuries
    - action: utter_Goalkeepers_injuries
 
+- story: Ankle Sprain
+  steps:
+   - intent: Ankle_Sprain
+   - action: utter_Ankle_Sprain
 
+- story: Warm up
+  steps:
+   - intent: Warm_up
+   - action: utter_Warm_up
+
+- story: overtraining football
+  steps:
+   - intent: overtraining
+   - action: utter_overtraining
+
+- story: nutrition football
+  steps:
+   - intent: nutrition
+   - action: utter_nutrition
+
+- story: immediate treatment
+  steps:
+   - intent: immediate_treatment
+   - action: utter_immediate_treatment
+
+- story: technology football
+  steps:
+   - intent: technology
+   - action: utter_technology
+
+- story: direct head
+  steps:
+   - intent: direct_head
+   - action: utter_direct_head
+
+- story: patellar tendinitis
+  steps:
+   - intent: patellar_tendinitis
+   - action: utter_patellar_tendinitis
+
+
+- story: hamstring strain
+  steps:
+   - intent: hamstring_strain
+   - action: utter_hamstring_strain
+
+- story: turf toe
+  steps:
+   - intent: turf_toe
+   - action: utter_turf_toe
+
+- story: biomechanics football
+  steps:
+   - intent: biomechanics
+   - action: utter_biomechanics
+
+- story: strain sprain
+  steps:
+   - intent: strain_sprain
+   - action: utter_strain_sprain
+
+- story: groin injuries
+  steps:
+   - intent: groin_injuries
+   - action: utter_groin_injuries
+
+- story: footware injuries
+  steps:
+   - intent: footware_injuries
+   - action: utter_footware_injuries
