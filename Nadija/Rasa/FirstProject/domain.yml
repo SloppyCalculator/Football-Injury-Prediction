@@ -8,8 +8,42 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - About_football
   - Common_injuries
+  - About_Football
+  - About_ACL
+  - About_ACLRecovery
+  - About_ACLfemale
+  - About_concussion
+  - About_RecoverConcussions
+  - Impact_concussion
+  - About_hamstring
+  - proper_footwear
+  - injury_risk
+  - groin_pull
+  - weather_conditions
+  - CTE
+  - Help_prevent
+  - Children_Youth
+  - Psychological_effects
+  - Hydration
+  - Goalkeepers_injuries
+  - Ankle_Sprain
+  - Warm_up
+  - overtraining
+  - nutrition
+  - immediate_treatment
+  - technology
+  - direct_head
+  - patellar_tendinitis
+  - hamstring_strain
+  - turf_toe
+  - biomechanics
+  - strain_sprain
+  - groin_injuries
+  - footware_injuries
+ 
+ 
+
 
 responses:
   utter_greet:
@@ -31,13 +65,140 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_About_football:
-    - text: "Football is a popular sport with different versions worldwide. The two main types are **association football (soccer)**, played with a round ball where teams score by kicking into a goal, and **American football**, played with an oval ball where teams score by carrying or passing it into an end zone. Other versions include Canadian football, Australian rules football, and rugby. The game varies by region but generally involves teamwork, strategy, and scoring points to win."
-
+ 
   utter_Common_injuries:
     - text: "Football players frequently experience injuries such as sprained ankles, hamstring strains, knee injuries (including ACL tears), concussions, and groin pulls. These injuries result from the high-intensity and physical nature of the sport."
 
+  utter_About_Football:
+    - text: |
+        Football is a popular sport with different versions worldwide. The two main types are **association football (soccer)**, played with a round ball where teams score by kicking into a goal, and **American football**, played with an oval ball where teams score by carrying or passing it into an end zone. Other versions include Canadian football, Australian rules football, and rugby. The game varies by region but generally involves teamwork, strategy, and scoring points to win.
 
+  utter_About_ACL:
+    - text: | 
+        Preventing ACL injuries involves strength training, proper warm-ups, neuromuscular conditioning, and using equipment suited to the player's anatomy. For female players, wearing boots designed for women's anatomical differences may help reduce injury risk. citeturn0news12
+
+  utter_About_ACLRecovery:
+    - text: |
+        Recovery from a torn ACL usually takes about 9 to 12 months, depending on the injury's severity and the effectiveness of the rehabilitation program. However, recovery times can vary; for instance, Sam Kerr's recovery extended beyond 12 months due to complications. citeturn0news10
+
+  utter_About_ACLfemale:
+    - text: |
+        Research indicates that female footballers have a higher incidence of ACL injuries due to factors like anatomical differences, hormonal influences, and inadequate training resources. The lack of equipment tailored to women's needs, such as properly fitting boots, also contributes to this increased risk. citeturn0news12
+
+  utter_About_concussion:
+    - text: |
+        Symptoms of a concussion include headaches, dizziness, confusion, nausea, balance problems, and sensitivity to light or noise. Players may also experience memory issues or loss of consciousness. It's crucial to seek immediate medical attention if a concussion is suspected.
+
+  utter_About_RecoverConcussions:
+    - text: |
+        To minimize concussion risks, players should use proper tackling techniques, wear well-fitted protective gear, and adhere to safety rules. Educating players and coaches about concussion symptoms and protocols is also essential
+
+  utter_Impact_concussion:
+    - text: |
+        Repeated concussions can lead to chronic traumatic encephalopathy (CTE), a degenerative brain condition associated with symptoms like memory loss, depression, and cognitive decline. Studies have found a significant prevalence of CTE among former NFL players. citeturn0news11
+
+  utter_About_hamstring:
+    - text: |
+        Treatment for hamstring injuries typically involves rest, ice application, compression, and elevation (RICE). Physical therapy exercises to restore strength and flexibility are also essential. Severe cases may require medical intervention or surgery.
+
+  utter_proper_footwear:
+    - text: |
+        Wearing appropriate footwear provides necessary support and traction, reducing the risk of injuries like sprains and strains. For female players, boots designed to accommodate anatomical differences can help prevent injuries such as ACL tears. 
+
+  utter_injury_risk:
+    - text: |
+        Some studies suggest that playing on artificial turf may increase the risk of certain injuries, such as ACL tears, due to differences in surface stiffness and traction. However, findings are mixed, and ongoing research continues to investigate this issue.
+
+  utter_groin_pull:
+    - text: |
+        A groin pull occurs when the muscles in the inner thigh are stretched or torn. It can lead to pain, limited mobility, and time away from play. Footballers are especially prone due to frequent directional changes and kicking.
+
+  utter_weather_conditions:
+    - text: |
+        Wet or icy conditions can increase the risk of slips, falls, and muscle strains. Dry, hard surfaces may lead to impact-related injuries. Proper footwear and ground maintenance are key to injury prevention.
+
+  utter_CTE:
+    - text: |
+        CTE (Chronic Traumatic Encephalopathy) is a degenerative brain disease linked to repeated head impacts. It's a concern due to long-term effects like memory loss, depression, and behavioral changes in athletes with multiple concussions.
+
+  utter_Help_prevent:
+    - text: |
+        Preseason programs focusing on strength, agility, and flexibility can prepare the body for intense gameplay, lowering the risk of injury. Emphasizing proper technique and conditioning is crucial.
+
+  utter_Children_Youth:
+    - text: |
+        While children may have lower-impact collisions, their growing bodies are more susceptible to overuse injuries. Proper coaching, training, and recovery are vital to safeguard young athletes.
+
+  utter_Psychological_effects:
+    - text: |
+        Injured players may experience anxiety, depression, or a loss of identity. Mental health support and involvement in team activities during recovery can help maintain well-being.
+
+  utter_Hydration:
+    - text: |
+        Dehydration can lead to muscle cramps, fatigue, and decreased performance, increasing injury risk. Staying well-hydrated is essential, especially in hot weather or intense matches.
+
+  utter_Goalkeepers_injuries:
+    - text: |
+        Yes, goalkeepers often experience upper body injuries like shoulder dislocations or finger fractures due to diving and catching. They also face knee injuries from repeated jumping and landings.
+
+  utter_Ankle_Sprain:
+    - text: |
+        A high ankle sprain affects the ligaments above the ankle joint and is usually more severe than a regular ankle sprain. It often occurs due to twisting or rotational forces during tackles or sudden movements.
+
+  utter_Warm_up:
+    - text: |
+        Yes. Skipping warm-ups can leave muscles tight and unprepared for sudden movements, increasing the likelihood of strains, sprains, and muscle tears.
+
+  utter_overtraining:
+    - text: |
+        Overtraining without sufficient rest can lead to fatigue, reduced coordination, and overuse injuries such as tendonitis or stress fractures. Recovery periods are essential for injury prevention.
+
+
+
+  utter_nutrition:
+    - text: |
+        Proper nutrition supports muscle repair, energy levels, and immune function. Protein helps repair tissues, while carbohydrates fuel performance. Calcium and vitamin D are important for bone health.
+
+  utter_immediate_treatment:
+    - text: |
+        The R.I.C.E. method—Rest, Ice, Compression, and Elevation—is commonly used to manage acute injuries like sprains or strains within the first 48 hours.
+
+  utter_technology:
+    - text: |
+        Wearable devices can monitor workload, heart rate, and movement patterns to identify fatigue or improper biomechanics, helping coaches adjust training and reduce injury risks.
+
+  utter_direct_head:
+    - text: |
+        No. Concussions can also occur from whiplash-like movements or impacts to the body that cause the brain to shake inside the skull, even without a head-to-head collision.
+
+  utter_patellar_tendinitis:
+    - text: |
+        Also called "jumper’s knee," it’s an overuse injury affecting the tendon connecting the kneecap to the shinbone. It causes pain and limits jumping or sprinting ability.
+
+  utter_hamstring_strain:
+    - text: |
+        Recovery depends on severity. Mild strains may heal in 1–2 weeks, while severe tears can take 6–8 weeks or longer. Proper rehab and avoiding early return are key to full recovery.
+
+  utter_turf_toe:
+    - text: |
+        Turf toe is a sprain of the big toe joint caused by excessive upward bending of the toe. It often occurs on artificial turf due to the increased grip, which prevents the foot from sliding.
+
+  utter_biomechanics:
+    - text: |
+        Poor biomechanics (e.g., faulty running or landing technique) can overload joints and muscles, leading to chronic injuries. Motion analysis can help correct these patterns.
+
+
+  utter_strain_sprain:
+    - text: |
+        A strain is an injury to a muscle or tendon, while a sprain affects ligaments. Both can range from mild (stretching) to severe (tears).
+
+  utter_groin_injuries:
+    - text: |
+        Groin injuries are common due to the demands of kicking, cutting, and twisting. Weakness, tightness, or muscle imbalances in the adductors can contribute.
+
+  utter_footware_injuries:
+    - text: |
+        Absolutely. Wearing improper or worn-out boots can affect traction, support, and biomechanics, contributing to both acute and overuse injuries.
 
 
 
